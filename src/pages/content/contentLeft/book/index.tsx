@@ -1,5 +1,6 @@
 import React from "react";
 import { List } from "antd";
+import { createFromIconfontCN } from "@ant-design/icons";
 
 import style from "./style.less";
 
@@ -20,6 +21,10 @@ const data = [
   }
 ];
 export default () => {
+  const IconFont = createFromIconfontCN({
+    scriptUrl: "//at.alicdn.com/t/font_1720468_6jbg9whahvn.js"
+  });
+
   return (
     <div>
       <List
@@ -30,10 +35,22 @@ export default () => {
               <img src={item.bookImg} alt="封面" />
             </div>
             <div className={style.bookFooter}>
-              <span></span>
-              <span>114次阅读</span>
-              <span>2人点赞</span>
-              <span>2人评论</span>
+              <span className={style.bookFooterCont}>
+                <IconFont type="icon-riqi" />
+                2020-03-28
+              </span>
+              <span className={style.bookFooterCont}>
+                <IconFont type="icon-yuedu" />
+                114次阅读
+              </span>
+              <span className={style.bookFooterCont}>
+                <IconFont type="icon-dianzan" />
+                2人点赞
+              </span>
+              <span className={style.bookFooterCont}>
+                <IconFont type="icon-pinglun" />
+                2人评论
+              </span>
             </div>
           </div>
         )}
