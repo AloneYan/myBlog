@@ -20,8 +20,8 @@ const data = [
   }
 ];
 
-class Write extends React.Component {
-  actions = [
+export default () => {
+  const actions: JSX.Element[] = [
     <span>
       <SmileTwoTone twoToneColor="#E889B7" />
       <span className={style.commentAction}>1</span>
@@ -32,39 +32,32 @@ class Write extends React.Component {
     </span>
   ];
 
-  render() {
-    return (
-      <div className={`card ${style.write}`}>
-        <div className={style.writeTextarea}>
-          <Form.Item>
-            <Input.TextArea
-              rows={4}
-              placeholder="来这里尽情的夸赞兔子小姐吧～"
-            />
-          </Form.Item>
-          <Form.Item>
-            <Button htmlType="submit" type="primary">
-              夸她
-            </Button>
-          </Form.Item>
-        </div>
-        <List
-          dataSource={data}
-          renderItem={item => (
-            <li>
-              <Comment
-                actions={this.actions}
-                author={<span>{item.name}</span>}
-                avatar={<Avatar src={item.header} alt={item.name} />}
-                content={<p>{item.content}</p>}
-                datetime={<span>{item.time}</span>}
-              />
-            </li>
-          )}
-        ></List>
+  return (
+    <div className={`card ${style.write}`}>
+      <div className={style.writeTextarea}>
+        <Form.Item>
+          <Input.TextArea rows={4} placeholder="来这里尽情的夸赞兔子小姐吧～" />
+        </Form.Item>
+        <Form.Item>
+          <Button htmlType="submit" type="primary">
+            夸她
+          </Button>
+        </Form.Item>
       </div>
-    );
-  }
-}
-
-export default Write;
+      <List
+        dataSource={data}
+        renderItem={item => (
+          <li>
+            <Comment
+              actions={actions}
+              author={<span>{item.name}</span>}
+              avatar={<Avatar src={item.header} alt={item.name} />}
+              content={<p>{item.content}</p>}
+              datetime={<span>{item.time}</span>}
+            />
+          </li>
+        )}
+      ></List>
+    </div>
+  );
+};
