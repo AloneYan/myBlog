@@ -4,6 +4,24 @@
 }
 * {
   font-family: "myFont";
+  cursor: url("~@assets/images/coco.cur"), auto;
+}
+body {
+  font-family: "myFont";
+}
+
+/* 清浮动 */
+.clearfix_after {
+  zoom: 1;
+}
+
+.clearfix_after:after {
+  content: "";
+  display: block;
+  height: 0;
+  line-height: 0;
+  clear: both;
+  visibility: hidden;
 }
 
 .content {

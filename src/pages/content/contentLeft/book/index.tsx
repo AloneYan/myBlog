@@ -26,8 +26,14 @@ export default () => {
         dataSource={data}
         renderItem={item => (
           <div className={`card ${style.book} clearfix`}>
-            <div className={style.bookImg}>
+            <div className={`${style.bookImg}`}>
               <img src={item.bookImg} alt="封面" />
+            </div>
+            <div className={style.bookFooter}>
+              <span></span>
+              <span>114次阅读</span>
+              <span>2人点赞</span>
+              <span>2人评论</span>
             </div>
           </div>
         )}

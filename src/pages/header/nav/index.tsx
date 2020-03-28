@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import style from "./style.less";
 import { Menu, Row, Col } from "antd";
 import { Link, withRouter } from "react-router-dom";
 import { navRight, menus } from "./model";
+import style from "./style.less";
+
+import qqImg from "@assets/images/qq.jpg";
+import wechatImg from "@assets/images/wechat.jpg";
 
 const Nav = (props: any) => {
   const [current, setCurrent] = useState<string>("mark");
@@ -43,6 +46,12 @@ const Nav = (props: any) => {
               <img src={item.img} alt={item.title} />
             </a>
           ))}
+          <span className={style.navRightImg} title="复制QQ">
+            <img src={qqImg} alt="QQ" />
+          </span>
+          <span className={style.navRightImg} title="扫码加微信">
+            <img src={wechatImg} alt="微信二维码" />
+          </span>
         </Col>
       </Row>
     </div>
