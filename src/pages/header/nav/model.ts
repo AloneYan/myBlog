@@ -23,22 +23,22 @@ export const navRight = [
 export const menus = [
   {
     id:'mark',
-    path:'/',
+    path:'/app',
     title:'兔子の文档'
   },
   {
     id:'book',
-    path:'/book',
+    path:'/app/book',
     title:'兔子の书单'
   },
   {
     id:'every',
-    path:'/every',
+    path:'/app/every',
     title:'兔子の日常'
   },
   {
     id:'write',
-    path:'/write',
+    path:'/app/write',
     title:'兔子の留言板'
   }
 ]
