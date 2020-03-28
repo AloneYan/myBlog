@@ -21,17 +21,6 @@ const data = [
 ];
 
 export default () => {
-  const actions: JSX.Element[] = [
-    <span>
-      <SmileTwoTone twoToneColor="#E889B7" />
-      <span className={style.commentAction}>1</span>
-    </span>,
-    <span>
-      <FrownTwoTone twoToneColor="#FFAC56" />
-      <span className={style.commentAction}>0</span>
-    </span>
-  ];
-
   return (
     <div className={`card ${style.write}`}>
       <div className={style.writeTextarea}>
@@ -49,7 +38,16 @@ export default () => {
         renderItem={item => (
           <li>
             <Comment
-              actions={actions}
+              actions={[
+                <span>
+                  <SmileTwoTone twoToneColor="#E889B7" />
+                  <span className={style.commentAction}>1</span>
+                </span>,
+                <span>
+                  <FrownTwoTone twoToneColor="#FFAC56" />
+                  <span className={style.commentAction}>0</span>
+                </span>
+              ]}
               author={<span>{item.name}</span>}
               avatar={<Avatar src={item.header} alt={item.name} />}
               content={<p>{item.content}</p>}
