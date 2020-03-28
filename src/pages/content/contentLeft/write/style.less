@@ -1,8 +1,38 @@
-.commentAction {
-  padding-left: 8px;
-  cursor: "auto";
+.write {
+  padding: 20px;
+  .commentAction {
+    padding-left: 8px;
+    cursor: "auto";
+  }
+  .writeTextarea {
+    border-bottom: 1px solid #d9d9d9;
+    margin-bottom: 10px;
+  }
+  :global {
+    .ant-avatar,
+    .ant-comment-avatar img {
+      width: 40px;
+      height: 40px;
+    }
+    .ant-comment-content-author > span,
+    .ant-comment-content-author > a {
+      font-size: 14px;
+    }
+    .ant-comment-content {
+      font-size: 16px;
+    }
+    .ant-comment-actions > li > span {
+      font-size: 14px;
+    }
+    .ant-form-item-control-input-content {
+      text-align: right;
+      .ant-btn-primary {
+        background-color: #e889b7;
+        border-color: #e889b7;
+      }
+    }
+  }
 }
-
 [class*="-col-rtl"] .commentAction {
   padding-right: 8px;
   padding-left: 0;
