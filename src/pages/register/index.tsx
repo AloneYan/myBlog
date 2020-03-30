@@ -1,8 +1,9 @@
 import React from "react";
-import { Form, Input, Button, Radio } from "antd";
+import { Form, Input, Button } from "antd";
 import { createFromIconfontCN } from "@ant-design/icons";
 
 import style from "./style.less";
+import userApi from "@api/user-api";
 
 export default () => {
   const layout = {
@@ -14,12 +15,9 @@ export default () => {
     scriptUrl: "//at.alicdn.com/t/font_1720468_fgrmlkdgh0h.js"
   });
 
-  const onFinish = (values: any) => {
-    console.log(values);
-  };
-
-  const onChange = (e: any) => {
-    console.log(e.target.value);
+  const onFinish = async (values: any) => {
+    const res = await userApi.addUser(values);
+    console.log(res);
   };
 
   return (
@@ -31,38 +29,27 @@ export default () => {
         </div>
         <Form {...layout} name="nest-messages" onFinish={onFinish}>
           <Form.Item
-            name={"usrId"}
-            label="你の账号"
-            rules={[{ required: true }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name={"usrName"}
+            name={"name"}
             label="你の昵称"
-            rules={[{ required: true }]}
+            rules={[{ required: true, message: "这个昵称好像不行" }]}
           >
             <Input />
-          </Form.Item>
-          <Form.Item name={"sex"} label="你の性别" rules={[{ required: true }]}>
-            <Radio.Group onChange={onChange}>
-              <Radio value={0}>boy</Radio>
-              <Radio value={1}>girl</Radio>
-            </Radio.Group>
-          </Form.Item>
-          <Form.Item
-            label="你の暗号"
-            name="password"
-            rules={[{ required: true }]}
-          >
-            <Input.Password />
           </Form.Item>
           <Form.Item
             name={"email"}
             label="你の邮箱"
-            rules={[{ type: "email", message: "这个邮箱好像不行" }]}
+            rules={[
+              { required: true, type: "email", message: "这个邮箱好像不行" }
+            ]}
           >
             <Input />
+          </Form.Item>
+          <Form.Item
+            label="你の暗号"
+            name="pass"
+            rules={[{ required: true, message: "这个暗号好像不行" }]}
+          >
+            <Input.Password />
           </Form.Item>
           <Button type="primary" htmlType="submit">
             注册and登录

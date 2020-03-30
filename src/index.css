@@ -1,15 +1,14 @@
 @font-face {
   font-family: "myFont";
-  src: url("./assets/fonts/myFont.ttf");
+  src: url("./assets/fonts/myFont.ttf") format("truetype");
 }
 * {
   font-family: "myFont";
   cursor: url("~@assets/images/coco.cur"), auto;
 }
-body {
-  font-family: "myFont";
+li {
+  list-style: none;
 }
-
 /* 清浮动 */
 .clearfix_after {
   zoom: 1;

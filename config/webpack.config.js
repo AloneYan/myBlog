@@ -293,6 +293,7 @@ module.exports = function(webpackEnv) {
         .filter(ext => useTypeScript || !ext.includes("ts")),
       alias: {
         "@assets": path.join(__dirname, "..", "src/assets"),
+        "@api": path.join(__dirname, "..", "src/api"),
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         "react-native": "react-native-web",
@@ -355,7 +356,7 @@ module.exports = function(webpackEnv) {
             // smaller than specified limit in bytes as data URLs to avoid requests.
             // A missing `test` is equivalent to a match.
             {
-              test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+              test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.ttf$/],
               loader: require.resolve("url-loader"),
               options: {
                 limit: imageInlineSizeLimit,
