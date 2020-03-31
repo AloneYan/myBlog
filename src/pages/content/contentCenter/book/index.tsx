@@ -1,8 +1,10 @@
 import React from "react";
 import { List } from "antd";
-import { createFromIconfontCN } from "@ant-design/icons";
+import cs from "classnames";
 
 import style from "./style.less";
+import ListFooter from "@components/listFooter";
+import IconFont from "@components/myIconfont";
 
 const data = [
   {
@@ -21,10 +23,6 @@ const data = [
   }
 ];
 export default () => {
-  const IconFont = createFromIconfontCN({
-    scriptUrl: "//at.alicdn.com/t/font_1720468_3fdbgw1kjam.js"
-  });
-
   const setStart = (num: number | string) => {
     let dom = [];
     for (let i = 0; i < num; i++) {
@@ -34,11 +32,11 @@ export default () => {
   };
 
   return (
-    <div>
+    <>
       <List
         dataSource={data}
         renderItem={item => (
-          <div className={`card ${style.book} clearfix`}>
+          <div className={cs("card", style.book, "clearfix")}>
             <div className={`${style.bookImg}`}>
               <img src={item.bookImg} alt="封面" />
             </div>
@@ -67,27 +65,17 @@ export default () => {
                 </span>
               </li>
             </ul>
-            <div className={style.bookFooter}>
-              <span className={style.bookFooterCont}>
-                <IconFont type="icon-riqi" />
-                2020-03-28
-              </span>
-              <span className={style.bookFooterCont}>
-                <IconFont type="icon-yuedu" />
-                114次阅读
-              </span>
-              <span className={style.bookFooterCont}>
-                <IconFont type="icon-dianzan" />
-                2人点赞
-              </span>
-              <span className={style.bookFooterCont}>
-                <IconFont type="icon-pinglun" />
-                2人评论
-              </span>
-            </div>
+            <ListFooter
+              {...{
+                time: "2020-03-30",
+                look: 2000,
+                good: 2,
+                talk: 12
+              }}
+            />
           </div>
         )}
       ></List>
-    </div>
+    </>
   );
 };

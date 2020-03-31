@@ -1,8 +1,8 @@
 import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
-import { createFromIconfontCN } from "@ant-design/icons";
 
 import style from "./style.less";
+import IconFont from "@components/myIconfont";
 
 export default () => {
   const onFinish = (values: any) => {
@@ -18,10 +18,6 @@ export default () => {
     labelCol: { span: 6 },
     wrapperCol: { span: 18 }
   };
-  // iconfont
-  const IconFont = createFromIconfontCN({
-    scriptUrl: "//at.alicdn.com/t/font_1720468_fgrmlkdgh0h.js"
-  });
 
   return (
     <div className={style.login}>

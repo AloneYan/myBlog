@@ -1,19 +1,15 @@
 import React from "react";
 import { Form, Input, Button } from "antd";
-import { createFromIconfontCN } from "@ant-design/icons";
 
 import style from "./style.less";
 import userApi from "@api/user-api";
+import IconFont from "@components/myIconfont";
 
 export default () => {
   const layout = {
     labelCol: { span: 6 },
     wrapperCol: { span: 18 }
   };
-
-  const IconFont = createFromIconfontCN({
-    scriptUrl: "//at.alicdn.com/t/font_1720468_fgrmlkdgh0h.js"
-  });
 
   const onFinish = async (values: any) => {
     const res = await userApi.addUser(values);

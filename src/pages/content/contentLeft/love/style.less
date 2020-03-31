@@ -1,0 +1,53 @@
+@keyframes rotate {
+  0% {
+    transform: translateY(5px);
+  }
+  25% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.1, 0.9);
+  }
+  75% {
+    ransform: translateY(0px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
+}
+.love {
+  padding: 20px 30px;
+  text-align: center;
+  .loveHeart {
+    p {
+      padding-top: 10px;
+    }
+    .loveHeartHeader {
+      display: flex;
+      text-align: center;
+      div {
+        display: inline-block;
+        flex: 1;
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          border: rgba(232, 137, 183, 0.4) 4px solid;
+        }
+        span {
+          font-size: 30px;
+          line-height: 60px;
+        }
+
+        .loveHeartHeaderFont {
+          display: inline-block;
+          animation: rotate 0.5s linear infinite;
+        }
+      }
+    }
+  }
+  .loveGoTime {
+    border-top: 1px solid #e889b7;
+    padding-top: 10px;
+  }
+}

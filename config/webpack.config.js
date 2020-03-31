@@ -294,6 +294,8 @@ module.exports = function(webpackEnv) {
       alias: {
         "@assets": path.join(__dirname, "..", "src/assets"),
         "@api": path.join(__dirname, "..", "src/api"),
+        "@util": path.join(__dirname, "..", "src/util"),
+        "@components": path.join(__dirname, "..", "src/components"),
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         "react-native": "react-native-web",
