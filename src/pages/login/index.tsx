@@ -2,15 +2,13 @@ import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 
 import style from "./style.less";
+import userApi from "@api/user-api";
 import IconFont from "@components/myIconfont";
 
 export default () => {
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
+  const onFinish = async (values: any) => {
+    const res = await userApi.getUser(values);
+    console.log(res);
   };
 
   // 标签布局
@@ -31,25 +29,24 @@ export default () => {
           name="basic"
           initialValues={{ remember: true }}
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
         >
           <Form.Item
-            label="你の账号"
-            name="username"
+            label="你の邮箱"
+            name="email"
             rules={[{ required: true, message: "这里不能不填！" }]}
           >
-            <Input placeholder="输入账号/邮箱登录吧" />
+            <Input placeholder="输入邮箱登录吧" />
           </Form.Item>
           <Form.Item
             label="你の暗号"
-            name="password"
+            name="pass"
             rules={[{ required: true, message: "忘了报上暗号啦！" }]}
           >
-            <Input.Password />
+            <Input.Password placeholder="报上暗号来" />
           </Form.Item>
-          <Form.Item name="remember" valuePropName="checked">
+          {/* <Form.Item name="remember" valuePropName="checked">
             <Checkbox>点这里我就会记住你～</Checkbox>
-          </Form.Item>
+          </Form.Item> */}
           <Button type="primary" htmlType="submit">
             登录
           </Button>
