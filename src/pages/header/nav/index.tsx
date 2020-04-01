@@ -6,6 +6,7 @@ import style from "./style.less";
 
 import qqImg from "@assets/images/qq.jpg";
 import wechatImg from "@assets/images/wechat.jpg";
+import IconFont from "@components/myIconfont";
 
 const Nav = (props: any) => {
   const [current, setCurrent] = useState<string>("mark");
@@ -24,6 +25,11 @@ const Nav = (props: any) => {
 
   return (
     <div className={style.nav}>
+      <Tooltip title="进入后台～">
+        <a className={style.navGoAdmin} href="/admin">
+          <IconFont type="icon-tuzi" />
+        </a>
+      </Tooltip>
       <Row className={style.navCont}>
         <Col span={6} className={style.navRight}>
           {navRight.map(item => (

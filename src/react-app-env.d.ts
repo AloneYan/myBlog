@@ -69,3 +69,12 @@ declare module "*.less" {
   const less: any;
   export default less;
 }
+
+declare interface Window {
+  [keys: string]: any;
+}
+// declare interface define {
+//   [keys: string]: any;
+// }
+
+declare module "braft-extensions/dist/code-highlighter";
