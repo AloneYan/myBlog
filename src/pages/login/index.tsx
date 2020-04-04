@@ -1,14 +1,23 @@
 import React from "react";
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button, message } from "antd";
 
 import style from "./style.less";
 import userApi from "@api/user-api";
 import IconFont from "@components/myIconfont";
+import history from "@util/history";
 
 export default () => {
   const onFinish = async (values: any) => {
     const res = await userApi.getUser(values);
-    console.log(res);
+    if (res.data.status === 0) {
+      localStorage.setItem("token", res.data.data.token);
+      message.success("登录成功");
+      setTimeout(() => {
+        history.push("/app");
+      }, 1000);
+    } else {
+      message.error(res.data.error);
+    }
   };
 
   // 标签布局
@@ -44,9 +53,6 @@ export default () => {
           >
             <Input.Password placeholder="报上暗号来" />
           </Form.Item>
-          {/* <Form.Item name="remember" valuePropName="checked">
-            <Checkbox>点这里我就会记住你～</Checkbox>
-          </Form.Item> */}
           <Button type="primary" htmlType="submit">
             登录
           </Button>

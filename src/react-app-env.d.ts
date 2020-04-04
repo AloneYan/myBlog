@@ -73,8 +73,3 @@ declare module "*.less" {
 declare interface Window {
   [keys: string]: any;
 }
-// declare interface define {
-//   [keys: string]: any;
-// }
-
-declare module "braft-extensions/dist/code-highlighter";

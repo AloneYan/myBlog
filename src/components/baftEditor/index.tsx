@@ -1,14 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "braft-editor/dist/index.css";
 import BraftEditor from "braft-editor";
+import { Button } from "antd";
 
 import style from "./style.less";
 
-export default () => {
-  const state = {
-    editorState: BraftEditor.createEditorState(null)
-  };
-
+export default (props: any) => {
   const colors = [
     "#000000",
     "#373636",
@@ -34,8 +31,11 @@ export default () => {
     "#83db8d"
   ];
 
+  const [editorState, setEditorState] = useState(
+    BraftEditor.createEditorState(null)
+  );
   const handleChange = (editorState: any) => {
-    state.editorState = editorState;
+    setEditorState(editorState.toHTML());
   };
 
   return (
@@ -44,10 +44,20 @@ export default () => {
         className={style.editor}
         controlBarClassName={style.editorBar}
         contentClassName={style.editorCont}
-        value={state.editorState}
+        value={editorState}
         colors={colors}
         onChange={handleChange}
       />
+      <div className={style.everyButton}>
+        <Button
+          type="primary"
+          onClick={() => {
+            props.submit(editorState);
+          }}
+        >
+          发布
+        </Button>
+      </div>
     </>
   );
 };
