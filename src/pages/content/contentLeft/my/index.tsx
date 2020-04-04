@@ -1,19 +1,25 @@
 import React from "react";
 import style from "./style.less";
+import history from "@util/history";
 
 export default () => {
+  //路由跳转
+  const goLogin = () => {
+    history.push("/login");
+  };
+
   return (
     <div className="card">
       <div className={style.my}>
         <div className={style.myBackground}></div>
         <div className={style.myHeader}>
-          <a href="/login">
+          <span onClick={goLogin}>
             <img
               src="http://www.hhan.top/wp-content/uploads/header.jpeg"
               alt="头像"
             />
             <span>@兔纸</span>
-          </a>
+          </span>
         </div>
         <div className={style.myText}>
           <a href="/app/mark">

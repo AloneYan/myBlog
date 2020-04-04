@@ -1,5 +1,11 @@
 import React from "react";
 
+import Type from "./type";
+
 export default () => {
-  return <>1234</>;
+  return (
+    <>
+      <Type />
+    </>
+  );
 };

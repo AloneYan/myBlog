@@ -1,25 +1,42 @@
 import React from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
+import { connect } from "react-redux";
 
 import style from "./style.less";
+import { setPreRoter } from "../../redux";
 import userApi from "@api/user-api";
 import IconFont from "@components/myIconfont";
+import history from "@util/history";
 
-export default () => {
+const Register = (props: any) => {
+  const onFinish = async (values: any) => {
+    const res = await userApi.addUser(values);
+    if (res.data.status === 0) {
+      //把本层路由地址放到redux的preRoter中
+      props.setPreRoter("register");
+      message.success("注册成功");
+      history.push("/login");
+    }
+  };
+
+  //路由跳转
+  const goLogin = () => {
+    history.push("/login");
+  };
+  const goApp = () => {
+    history.push("/app");
+  };
+
+  //标签布局
   const layout = {
     labelCol: { span: 6 },
     wrapperCol: { span: 18 }
   };
 
-  const onFinish = async (values: any) => {
-    const res = await userApi.addUser(values);
-    console.log(res);
-  };
-
   return (
     <div className={style.register}>
       <div className={style.registerContent}>
-        <div className={style.loginLogo}>
+        <div className={style.registerLogo}>
           <IconFont type="icon-tuzi" />
           欢迎光临
         </div>
@@ -51,15 +68,22 @@ export default () => {
             注册and登录
           </Button>
         </Form>
-        <div className={style.loginFooter}>
-          <span className={style.loginFooterBack}>
-            <a href="/">回到主站</a>
+        <div className={style.registerFooter}>
+          <span className={style.registerFooterBack}>
+            <span onClick={goApp}>回到主站</span>
           </span>
-          <span className={style.loginFooterGo}>
-            <a href="/login">已有账号去登录 →</a>
+          <span className={style.registerFooterGo}>
+            <span onClick={goLogin}>已有账号去登录 →</span>
           </span>
         </div>
       </div>
     </div>
   );
 };
+
+//把本层路由地址放到redux的preRoter中
+export default connect(null, (dispatch: any) => ({
+  setPreRoter(preRoter: any) {
+    dispatch(setPreRoter({ preRoter }));
+  }
+}))(Register);

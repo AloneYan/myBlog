@@ -1,23 +1,37 @@
 import React from "react";
 import { Form, Input, Button, message } from "antd";
+import { connect } from "react-redux";
 
 import style from "./style.less";
 import userApi from "@api/user-api";
 import IconFont from "@components/myIconfont";
 import history from "@util/history";
 
-export default () => {
+const Login = (props: any) => {
   const onFinish = async (values: any) => {
     const res = await userApi.getUser(values);
     if (res.data.status === 0) {
+      //保存token和用户信息到浏览器缓存中
       localStorage.setItem("token", res.data.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.data.user));
       message.success("登录成功");
-      setTimeout(() => {
+      //如果从注册页跳转回来 就跳回主页面，否则跳回上一层
+      if (props.preRoter === "register") {
         history.push("/app");
-      }, 1000);
-    } else {
-      message.error(res.data.error);
+      } else {
+        history.goBack();
+      }
     }
+  };
+  //路由跳转
+  const goRegister = () => {
+    history.push("/register");
+  };
+  const goApp = () => {
+    history.push("/app");
+  };
+  const goForgetPass = () => {
+    history.push("/app");
   };
 
   // 标签布局
@@ -59,14 +73,22 @@ export default () => {
         </Form>
         <div className={style.loginFooter}>
           <span className={style.loginFooterBack}>
-            <a href="/">回到主站</a>
+            <span onClick={goApp}>回到主站</span>
           </span>
           <span className={style.loginFooterGo}>
-            <a href="/">忘记密码? </a>
-            <a href="/register"> 没有账号</a>
+            <span onClick={goForgetPass}>忘记密码?</span>
+            <span onClick={goRegister}> 没有账号</span>
           </span>
         </div>
       </div>
     </div>
   );
 };
+
+//在redux中取出preRoter上层路由
+export default connect(
+  (state: any) => ({
+    preRoter: state.common.preRoter
+  }),
+  null
+)(Login);

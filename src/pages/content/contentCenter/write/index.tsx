@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Comment, Avatar, List, Form, Button, Input } from "antd";
 import { SmileTwoTone, FrownTwoTone } from "@ant-design/icons";
 
 import style from "./style.less";
+import writeApi from "@api/write-api";
 
 const data = [
   {
@@ -21,14 +22,36 @@ const data = [
 ];
 
 export default () => {
+  const [msg, setMsg] = useState("");
+
+  //绑定评论内容
+  const textAreaChange = (e: any) => {
+    setMsg(e.target.value);
+  };
+
+  //提交评论
+  const onSubmit = async () => {
+    const user = JSON.parse(localStorage.user);
+    const res = await writeApi.saveWrite({
+      uid: user.id,
+      msg: msg
+    });
+    console.log(res);
+  };
+
   return (
     <div className={`card ${style.write}`}>
       <div className={style.writeTextarea}>
         <Form.Item>
-          <Input.TextArea rows={4} placeholder="来这里尽情的夸赞兔子小姐吧～" />
+          <Input.TextArea
+            rows={4}
+            value={msg}
+            onInput={textAreaChange}
+            placeholder="来这里尽情的夸赞兔子小姐吧～"
+          />
         </Form.Item>
         <Form.Item>
-          <Button htmlType="submit" type="primary">
+          <Button onClick={onSubmit} type="primary">
             夸她
           </Button>
         </Form.Item>
