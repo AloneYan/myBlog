@@ -5,20 +5,16 @@ import style from "./style.less";
 
 const data = [
   {
-    name: "Vue",
+    name: "时间效率和自律",
     num: 0
   },
   {
-    name: "TypeScript",
+    name: "国产小说",
     num: 12
   },
   {
-    name: "小程序",
+    name: "程序媛养成计划",
     num: 2
-  },
-  {
-    name: "JavaScript",
-    num: 10
   }
 ];
 
@@ -27,12 +23,12 @@ export default () => {
     <div className="card">
       <div className={style.typeHeader}>
         <IconFont type="icon-leimupinleifenleileibie" />
-        文档分类
+        书单分类
       </div>
       <div className={style.typeList}>
         {data.map(item => (
           <div key={item.name}>
-            <IconFont type="icon-wenjianjia" />
+            <IconFont type="icon-shu1" />
             {item.name}
             <span>（{item.num}）</span>
           </div>

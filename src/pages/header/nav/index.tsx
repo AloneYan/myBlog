@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Menu, Row, Col, Tooltip } from "antd";
 import { Link, withRouter } from "react-router-dom";
+
 import { navRight, menus } from "./model";
 import style from "./style.less";
-
 import qqImg from "@assets/images/qq.jpg";
 import wechatImg from "@assets/images/wechat.jpg";
 import IconFont from "@components/myIconfont";
@@ -33,7 +33,7 @@ const Nav = (props: any) => {
       <Row className={style.navCont}>
         <Col span={6} className={style.navRight}>
           {navRight.map(item => (
-            <Tooltip title={item.title}>
+            <Tooltip title={item.title} key={item.title}>
               <a
                 className={style.navRightImg}
                 href={item.href}

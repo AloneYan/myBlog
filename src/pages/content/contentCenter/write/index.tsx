@@ -1,28 +1,18 @@
-import React, { useState } from "react";
-import { Comment, Avatar, List, Form, Button, Input } from "antd";
+import React, { useState, useEffect } from "react";
+import { Comment, Avatar, List, Form, Button, Input, message } from "antd";
 import { SmileTwoTone, FrownTwoTone } from "@ant-design/icons";
+import moment from "moment";
 
 import style from "./style.less";
 import writeApi from "@api/write-api";
 
-const data = [
-  {
-    name: "丁少华",
-    content: "哈哈哈哈哈博客太好拉",
-    time: "2020-03-08",
-    header: "http://www.hhan.top/wp-content/uploads/header.jpeg"
-  },
-  {
-    name: "阎涵",
-    content:
-      "丁少华说的对哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈",
-    time: "2020-03-08",
-    header: "http://www.hhan.top/wp-content/uploads/header.jpeg"
-  }
-];
-
 export default () => {
   const [msg, setMsg] = useState("");
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    getList();
+  }, []);
 
   //绑定评论内容
   const textAreaChange = (e: any) => {
@@ -36,7 +26,19 @@ export default () => {
       uid: user.id,
       msg: msg
     });
-    console.log(res);
+    if (res.data.status === 0) {
+      message.success("评论成功");
+      getList();
+      setMsg("");
+    }
+  };
+
+  //获取评论列表
+  const getList = async () => {
+    const res = await writeApi.getWrite();
+    if (res.data.status === 0) {
+      setList(res.data.data);
+    }
   };
 
   return (
@@ -57,8 +59,8 @@ export default () => {
         </Form.Item>
       </div>
       <List
-        dataSource={data}
-        renderItem={item => (
+        dataSource={list}
+        renderItem={(item: any) => (
           <li>
             <Comment
               actions={[
@@ -72,9 +74,9 @@ export default () => {
                 </span>
               ]}
               author={<span>{item.name}</span>}
-              avatar={<Avatar src={item.header} alt={item.name} />}
-              content={<p>{item.content}</p>}
-              datetime={<span>{item.time}</span>}
+              avatar={<Avatar src={item.headImg} alt={item.name} />}
+              content={<p>{item.msg}</p>}
+              datetime={<span>{moment(item.createTime).fromNow()}</span>}
             />
           </li>
         )}
