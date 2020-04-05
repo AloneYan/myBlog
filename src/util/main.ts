@@ -6,7 +6,7 @@ import history from "./history";
 // axios.defaults.baseURL = "http://dshvv.com:7001";
 axios.defaults.baseURL = "http://192.168.0.100:7001";
 
-//请求拦截
+// 请求拦截
 axios.interceptors.request.use(
   config => {
     const token = localStorage.getItem("token");

@@ -51,6 +51,7 @@ export default (props: any) => {
       <div className={style.everyButton}>
         <Button
           type="primary"
+          htmlType="submit"
           onClick={() => {
             props.submit(editorState);
           }}

@@ -27,7 +27,7 @@ export default () => {
       </div>
       <Timeline className={style.timeList}>
         {data.map(item => (
-          <Timeline.Item dot={<IconFont type="icon-riqi1" key={item.time} />}>
+          <Timeline.Item key={item.time} dot={<IconFont type="icon-riqi1" />}>
             {item.time}
             <span>（{item.num}）</span>
           </Timeline.Item>

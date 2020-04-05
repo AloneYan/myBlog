@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Comment, Avatar, List, Form, Button, Input, message } from "antd";
-import { SmileTwoTone, FrownTwoTone } from "@ant-design/icons";
+// import { SmileTwoTone, FrownTwoTone } from "@ant-design/icons";
 import moment from "moment";
 
 import style from "./style.less";
@@ -63,16 +63,16 @@ export default () => {
         renderItem={(item: any) => (
           <li>
             <Comment
-              actions={[
-                <span>
-                  <SmileTwoTone twoToneColor="#E889B7" />
-                  <span className={style.commentAction}>1</span>
-                </span>,
-                <span>
-                  <FrownTwoTone twoToneColor="#FFAC56" />
-                  <span className={style.commentAction}>0</span>
-                </span>
-              ]}
+              // actions={[
+              //   <span>
+              //     <SmileTwoTone twoToneColor="#E889B7" />
+              //     <span className={style.commentAction}>1</span>
+              //   </span>,
+              //   <span>
+              //     <FrownTwoTone twoToneColor="#FFAC56" />
+              //     <span className={style.commentAction}>0</span>
+              //   </span>
+              // ]}
               author={<span>{item.name}</span>}
               avatar={<Avatar src={item.headImg} alt={item.name} />}
               content={<p>{item.msg}</p>}
