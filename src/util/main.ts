@@ -1,17 +1,42 @@
 import axios from "axios";
-import { message } from "antd";
+import { message, Modal } from "antd";
 import moment from "moment";
+import history from "./history";
 
 // axios.defaults.baseURL = "http://dshvv.com:7001";
 axios.defaults.baseURL = "http://192.168.0.100:7001";
-if (localStorage.token) {
-  axios.defaults.headers.common["token"] = localStorage.token;
-}
 
+//请求拦截
+axios.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      // 判断是否存在token，如果存在的话，则每个http header都加上token
+      config.headers.token = token; //请求头加上token
+    }
+    return config;
+  },
+  err => {
+    return Promise.reject(err);
+  }
+);
 //拦截响应，做统一处理
 axios.interceptors.response.use(
   response => {
-    if (response.data.status !== 0) {
+    if (response.data.status === 0) {
+      return response;
+    } else if (response.data.status === -2) {
+      Modal.confirm({
+        title: "提示",
+        cancelText: "就不",
+        okText: "去登录",
+        content: "你还没有登录呦",
+        onOk() {
+          history.push("/login");
+        },
+        onCancel() {}
+      });
+    } else {
       message.error(response.data.error);
     }
     return response;
