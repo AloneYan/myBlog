@@ -9,8 +9,8 @@ export default () => {
     <div>
       <Switch>
         <Route exact path="/admin/every" component={Every} />
-        <Route exact path="/admin/mark" component={Mark} />
       </Switch>
+      <Mark />
     </div>
   );
 };
