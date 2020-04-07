@@ -23,6 +23,9 @@ const Nav = (props: any) => {
       <div className={style.adminNavLogo}>
         <IconFont type="icon-tuzi" />
       </div>
+      <Menu.Item key="1">
+        <Link to="/admin">首页</Link>
+      </Menu.Item>
       <SubMenu
         key="sub1"
         title={
@@ -36,9 +39,6 @@ const Nav = (props: any) => {
         </Menu.Item>
         <Menu.Item key="book">
           <Link to="/admin/book">书单</Link>
-        </Menu.Item>
-        <Menu.Item key="every">
-          <Link to="/admin/every">日常</Link>
         </Menu.Item>
       </SubMenu>
     </Menu>

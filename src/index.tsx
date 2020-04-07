@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Router, Route, Redirect, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import "antd/dist/antd.css";
@@ -18,11 +18,10 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Switch>
-        <Route path="/app" component={App} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/admin" component={Admin} />
-        <Redirect from="/" to="/app" />
+        <Route path="/" component={App} />
       </Switch>
     </Router>
   </Provider>,

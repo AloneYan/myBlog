@@ -47,3 +47,14 @@ body {
   margin-bottom: 10px;
   box-shadow: 0 1px 3px rgba(26, 26, 26, 0.1);
 }
+
+/* 改写ad默认样式 */
+.ant-layout-sider {
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.ant-layout {
+  margin-left: 100px;
+}

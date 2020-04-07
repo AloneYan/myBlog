@@ -42,16 +42,30 @@ export default () => {
       </div>
       <Form onFinish={onFinish}>
         <Form.Item
-          label="文档题目"
+          label="书单名称"
           name="markname"
           rules={[{ required: true, message: "请填写文章题目" }]}
         >
           <Input />
         </Form.Item>
+        <Form.Item
+          label="书单作者"
+          name="atname"
+          rules={[{ required: true, message: "请填写本书作者" }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="推荐指数"
+          name="number"
+          rules={[{ required: true, message: "几颗星" }]}
+        >
+          <Input type="number" />
+        </Form.Item>
         <div className={style.addIcontNext}>
           <Form.Item
             name="marktype"
-            label="文档类型"
+            label="书单类型"
             rules={[{ required: true, message: "请选择文档类型" }]}
           >
             <Select placeholder="请选择文档类型">

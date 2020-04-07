@@ -3,12 +3,12 @@ import { message, Modal } from "antd";
 import moment from "moment";
 import history from "./history";
 
-// axios.defaults.baseURL = "http://dshvv.com:7001";
-axios.defaults.baseURL = "http://192.168.0.100:7001";
+axios.defaults.baseURL = "http://dshvv.com:7001";
+// axios.defaults.baseURL = "http://192.168.0.100:7001";
 
 // 请求拦截
 axios.interceptors.request.use(
-  config => {
+  (config) => {
     const token = localStorage.getItem("token");
     if (token) {
       // 判断是否存在token，如果存在的话，则每个http header都加上token
@@ -16,13 +16,13 @@ axios.interceptors.request.use(
     }
     return config;
   },
-  err => {
+  (err) => {
     return Promise.reject(err);
   }
 );
 //拦截响应，做统一处理
 axios.interceptors.response.use(
-  response => {
+  (response) => {
     if (response.data.status === 0) {
       return response;
     } else if (response.data.status === -2) {
@@ -34,14 +34,14 @@ axios.interceptors.response.use(
         onOk() {
           history.push("/login");
         },
-        onCancel() {}
+        onCancel() {},
       });
     } else {
       message.error(response.data.error);
     }
     return response;
   },
-  error => {
+  (error) => {
     message.error("很遗憾 请求无响应");
     return Promise.reject(error); // 返回接口返回的错误信息
   }
@@ -63,6 +63,6 @@ moment.locale("zh-cn", {
     M: "1个月",
     MM: "%d个月",
     y: "1年",
-    yy: "%d年"
-  }
+    yy: "%d年",
+  },
 });
