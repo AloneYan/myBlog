@@ -4,10 +4,6 @@
     padding-left: 8px;
     cursor: "auto";
   }
-  .writeTextarea {
-    border-bottom: 1px solid #f3f3f3;
-    margin-bottom: 10px;
-  }
   :global {
     .ant-comment {
       padding-bottom: 20px;
@@ -20,11 +16,7 @@
       }
       .ant-comment-inner {
         padding: 0;
-        .ant-avatar,
-        .ant-comment-avatar img {
-          width: 40px;
-          height: 40px;
-        }
+
         .ant-comment-content {
           font-size: 16px;
         }
@@ -33,11 +25,6 @@
         }
       }
       .ant-comment-nested {
-        .ant-avatar,
-        .ant-comment-avatar img {
-          width: 30px;
-          height: 30px;
-        }
         .ant-comment-content {
           font-size: 14px;
         }
@@ -62,12 +49,10 @@
       .ant-comment-content-author > a {
         font-size: 14px;
       }
-    }
-    .ant-form-item-control-input-content {
-      text-align: right;
-      .ant-btn-primary {
-        background-color: #e889b7;
-        border-color: #e889b7;
+      .ant-avatar,
+      .ant-comment-avatar img {
+        width: 50px;
+        height: 50px;
       }
     }
   }

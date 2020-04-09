@@ -30,7 +30,7 @@ axios.interceptors.response.use(
         title: "提示",
         cancelText: "就不",
         okText: "去登录",
-        content: "你还没有登录呦",
+        content: "登录状态失效啦，重新登录吧～",
         onOk() {
           history.push("/login");
         },

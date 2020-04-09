@@ -59,3 +59,10 @@ body {
 .ant-layout {
   margin-left: 100px;
 }
+.ant-input:hover,
+.ant-input:focus,
+.ant-input-focused {
+  border-color: #e889b7;
+  box-shadow: 0 0 0 2px rgba(232, 137, 183, 0.2);
+  -webkit-box-shadow: 0 0 0 2px rgba(232, 137, 183, 0.2);
+}

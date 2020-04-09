@@ -3,7 +3,7 @@ import React from "react";
 import IconFont from "@components/myIconfont";
 import style from "./style.less";
 
-export default () => {
+export default (props: any) => {
   return (
     <>
       <div className={style.contentShare}>
@@ -20,7 +20,6 @@ export default () => {
           <IconFont type="icon-fenxiang" />
         </div>
       </div>
-      <div className={style.contentTalk}>说点啥？</div>
     </>
   );
 };

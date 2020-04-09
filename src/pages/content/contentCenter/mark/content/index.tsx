@@ -1,12 +1,25 @@
 import React from "react";
-import { Breadcrumb } from "antd";
+import { Breadcrumb, message } from "antd";
 import { HomeOutlined } from "@ant-design/icons";
 
 import IconFont from "@components/myIconfont";
 import Footer from "@components/contentFooter";
+import MyComment from "@components/comment";
 import style from "./style.less";
 
 export default () => {
+  //提交评论
+  const onSubmit = async (msg: string, callBack: Function) => {
+    // const res = await writeApi.saveWrite({
+    //   msg: msg,
+    // });
+    // if (res.data.status === 0) {
+    //   message.success("评论成功");
+    //   getList();
+    //   callBack();
+    // }
+  };
+
   return (
     <div className={style.content}>
       <div className={style.contentBread}>
@@ -45,6 +58,7 @@ export default () => {
         哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
       </div>
       <Footer />
+      <MyComment onSubmit={onSubmit} />
     </div>
   );
 };
