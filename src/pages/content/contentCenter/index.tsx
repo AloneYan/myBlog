@@ -10,10 +10,10 @@ export default () => {
   return (
     <>
       <Switch>
-        <Route exact path="/" component={Mark} />
         <Route exact path="/book" component={Book} />
         <Route exact path="/every" component={Every} />
         <Route exact path="/write" component={Write} />
+        <Mark />
       </Switch>
     </>
   );

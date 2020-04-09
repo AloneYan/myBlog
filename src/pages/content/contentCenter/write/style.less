@@ -5,24 +5,63 @@
     cursor: "auto";
   }
   .writeTextarea {
-    border-bottom: 1px solid #d9d9d9;
+    border-bottom: 1px solid #f3f3f3;
     margin-bottom: 10px;
   }
   :global {
-    .ant-avatar,
-    .ant-comment-avatar img {
-      width: 40px;
-      height: 40px;
-    }
-    .ant-comment-content-author > span,
-    .ant-comment-content-author > a {
-      font-size: 14px;
-    }
-    .ant-comment-content {
-      font-size: 16px;
-    }
-    .ant-comment-actions > li > span {
-      font-size: 14px;
+    .ant-comment {
+      padding-bottom: 20px;
+      margin-bottom: 25px;
+      border-bottom: 1px solid #f3f3f3;
+      .ant-comment {
+        border-bottom: unset;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      .ant-comment-inner {
+        padding: 0;
+        .ant-avatar,
+        .ant-comment-avatar img {
+          width: 40px;
+          height: 40px;
+        }
+        .ant-comment-content {
+          font-size: 16px;
+        }
+        .ant-comment-content-author-time span {
+          font-size: 12px;
+        }
+      }
+      .ant-comment-nested {
+        .ant-avatar,
+        .ant-comment-avatar img {
+          width: 30px;
+          height: 30px;
+        }
+        .ant-comment-content {
+          font-size: 14px;
+        }
+        .ant-comment-content-author-time span {
+          font-size: 12px;
+        }
+      }
+      .ant-comment-content {
+        padding-left: 10px;
+        .ant-comment-content-detail {
+          p {
+            color: rgba(0, 0, 0, 0.65);
+          }
+        }
+      }
+      .ant-comment-content-author-name {
+        span {
+          color: #364f6b;
+        }
+      }
+      .ant-comment-content-author > span,
+      .ant-comment-content-author > a {
+        font-size: 14px;
+      }
     }
     .ant-form-item-control-input-content {
       text-align: right;

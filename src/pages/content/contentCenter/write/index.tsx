@@ -24,7 +24,7 @@ export default () => {
     const user = JSON.parse(localStorage.user);
     const res = await writeApi.saveWrite({
       uid: user.id,
-      msg: msg
+      msg: msg,
     });
     if (res.data.status === 0) {
       message.success("评论成功");
@@ -63,21 +63,20 @@ export default () => {
         renderItem={(item: any) => (
           <li>
             <Comment
-              // actions={[
-              //   <span>
-              //     <SmileTwoTone twoToneColor="#E889B7" />
-              //     <span className={style.commentAction}>1</span>
-              //   </span>,
-              //   <span>
-              //     <FrownTwoTone twoToneColor="#FFAC56" />
-              //     <span className={style.commentAction}>0</span>
-              //   </span>
-              // ]}
               author={<span>{item.name}</span>}
               avatar={<Avatar src={item.headImg} alt={item.name} />}
               content={<p>{item.msg}</p>}
               datetime={<span>{moment(item.createTime).fromNow()}</span>}
-            />
+            >
+              {item.msg === "1111" && (
+                <Comment
+                  author={<span>{item.name}</span>}
+                  avatar={<Avatar src={item.headImg} alt={item.name} />}
+                  content={<p>{item.msg}</p>}
+                  datetime={<span>{moment(item.createTime).fromNow()}</span>}
+                />
+              )}
+            </Comment>
           </li>
         )}
       ></List>

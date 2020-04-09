@@ -41,6 +41,18 @@ const Nav = (props: any) => {
           <Link to="/admin/book">书单</Link>
         </Menu.Item>
       </SubMenu>
+      <SubMenu
+        key="sub2"
+        title={
+          <span>
+            <span>设置</span>
+          </span>
+        }
+      >
+        <Menu.Item key="param">
+          <Link to="/admin/param">参数管理</Link>
+        </Menu.Item>
+      </SubMenu>
     </Menu>
   );
 };

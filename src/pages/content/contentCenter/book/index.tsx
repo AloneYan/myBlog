@@ -1,10 +1,10 @@
 import React from "react";
-import { List } from "antd";
+import { List, Rate } from "antd";
 import cs from "classnames";
 
-import style from "./style.less";
 import ListFooter from "@components/listFooter";
 import IconFont from "@components/myIconfont";
+import style from "./style.less";
 
 const data = [
   {
@@ -12,30 +12,22 @@ const data = [
     author: "安东尼",
     start: "4",
     content: "这本书主要讲了呀呀呀呀呀呀哈哈哈哈哈哈哈",
-    bookImg: "http://www.hhan.top/wp-content/uploads/2020/03/timg-1.jpeg"
+    bookImg: "http://www.hhan.top/wp-content/uploads/2020/03/timg-1.jpeg",
   },
   {
     bookName: "安东尼没有眼泪",
     author: "安东尼",
     start: "2",
     content: "这本书主要讲了呀呀呀呀呀呀哈哈哈哈哈哈哈",
-    bookImg: "http://www.hhan.top/wp-content/uploads/2020/03/timg-1.jpeg"
-  }
+    bookImg: "http://www.hhan.top/wp-content/uploads/2020/03/timg-1.jpeg",
+  },
 ];
 export default () => {
-  const setStart = (num: number | string) => {
-    let dom = [];
-    for (let i = 0; i < num; i++) {
-      dom.push(<IconFont type="icon-xing1" key={i} />);
-    }
-    return dom;
-  };
-
   return (
     <>
       <List
         dataSource={data}
-        renderItem={item => (
+        renderItem={(item) => (
           <div className={cs("card", style.book, "clearfix")}>
             <div className={`${style.bookImg}`}>
               <img src={item.bookImg} alt="封面" />
@@ -61,7 +53,11 @@ export default () => {
                     <IconFont type="icon-tuijian" />
                     推荐：
                   </span>
-                  {setStart(item.start)}
+                  <Rate
+                    disabled
+                    defaultValue={5}
+                    character={<IconFont type="icon-tuzi1" />}
+                  />
                 </span>
               </li>
             </ul>
@@ -70,7 +66,7 @@ export default () => {
                 time: "2020-03-30",
                 look: 2000,
                 good: 2,
-                talk: 12
+                talk: 12,
               }}
             />
           </div>
