@@ -10,29 +10,41 @@ import IconFont from "@components/myIconfont";
 
 const Nav = (props: any) => {
   const [current, setCurrent] = useState<string>("mark");
+  const [user, setUser] = useState<User>();
   const {
-    location: { pathname }
+    location: { pathname },
   } = props;
 
   useEffect(() => {
-    const currNavIdx = menus.findIndex(item => item.path === pathname);
+    getUser();
+    const currNavIdx = menus.findIndex((item) => item.path === pathname);
     if (menus[currNavIdx]) {
       setCurrent(menus[currNavIdx].id);
     } else {
       setCurrent("");
     }
   }, [pathname]);
+  //获取用户信息
+  const getUser = () => {
+    if (localStorage.user) {
+      const user = JSON.parse(localStorage.user);
+      setUser(user);
+    }
+  };
 
   return (
     <div className={style.nav}>
-      <Tooltip title="进入后台～">
-        <a className={style.navGoAdmin} href="/admin">
-          <IconFont type="icon-tuzi" />
-        </a>
-      </Tooltip>
+      {user && (
+        <Tooltip title="进入后台～">
+          <a className={style.navGoAdmin} href="/admin">
+            <IconFont type="icon-tuzi" />
+          </a>
+        </Tooltip>
+      )}
+
       <Row className={style.navCont}>
         <Col span={6} className={style.navRight}>
-          {navRight.map(item => (
+          {navRight.map((item) => (
             <Tooltip title={item.title} key={item.title}>
               <a
                 className={style.navRightImg}
@@ -53,7 +65,7 @@ const Nav = (props: any) => {
         </Col>
         <Col span={18} className={style.navLeft}>
           <Menu selectedKeys={[current]} mode="horizontal">
-            {menus.map(item => (
+            {menus.map((item) => (
               <Menu.Item key={item.id}>
                 <Link to={item.path}>{item.title}</Link>
               </Menu.Item>
