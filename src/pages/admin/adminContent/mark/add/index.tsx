@@ -78,7 +78,7 @@ export default () => {
           >
             <Select placeholder="请选择文档类型">
               {typeList.map((item: any) => (
-                <Select.Option key={item.id} value={item.type}>
+                <Select.Option key={item.id} value={item.id}>
                   {item.name}
                 </Select.Option>
               ))}
