@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Table, Button } from "antd";
 
 import style from "./style.less";
 import history from "@util/history";
+import markApi from "@api/mark-api";
 
 export default () => {
+  useEffect(() => {
+    getList();
+  }, []);
+  //获取文档列表
+  const getList = async () => {
+    const res = await markApi.getMarkList();
+    console.log(res);
+  };
+  //列表复选框状态
   const rowSelection = {
     onChange: (selectedRowKeys: any, selectedRows: any) => {
       // console.log(selectedRows);
-    }
+    },
   };
-
+  //跳转新建文档
   const addMark = () => {
     history.push("/admin/mark/add");
   };
@@ -26,7 +36,7 @@ export default () => {
         <Table
           rowSelection={{
             type: "checkbox",
-            ...rowSelection
+            ...rowSelection,
           }}
           columns={columns}
           dataSource={data}
@@ -39,23 +49,23 @@ export default () => {
 export const columns = [
   {
     title: "题目",
-    dataIndex: "name"
+    dataIndex: "name",
   },
   {
     title: "类型",
-    dataIndex: "age"
+    dataIndex: "age",
   },
   {
     title: "作者",
-    dataIndex: "address"
+    dataIndex: "address",
   },
   {
     title: "评论数",
-    dataIndex: "address"
+    dataIndex: "address",
   },
   {
     title: "日期",
-    dataIndex: "address"
+    dataIndex: "address",
   },
   {
     title: "操作",
@@ -65,8 +75,8 @@ export const columns = [
         <span>编辑</span>
         <span>删除</span>
       </span>
-    )
-  }
+    ),
+  },
 ];
 
 export const data = [
@@ -74,24 +84,24 @@ export const data = [
     key: "1",
     name: "John Brown",
     age: 32,
-    address: "New York No. 1 Lake Park"
+    address: "New York No. 1 Lake Park",
   },
   {
     key: "2",
     name: "Jim Green",
     age: 42,
-    address: "London No. 1 Lake Park"
+    address: "London No. 1 Lake Park",
   },
   {
     key: "3",
     name: "Joe Black",
     age: 32,
-    address: "Sidney No. 1 Lake Park"
+    address: "Sidney No. 1 Lake Park",
   },
   {
     key: "4",
     name: "Disabled User",
     age: 99,
-    address: "Sidney No. 1 Lake Park"
-  }
+    address: "Sidney No. 1 Lake Park",
+  },
 ];
