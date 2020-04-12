@@ -46,10 +46,12 @@ export default () => {
     setFwbCont(val);
   };
   //发布
-  const onFinish = (val: any) => {
+  const onFinish = async (val: any) => {
     const param = val;
     param.content = fwbCont;
     console.log(param);
+    const res = await markApi.saveMark(param);
+    console.log(res);
   };
   //返回列表跳转
   const addReturn = () => {
@@ -63,14 +65,14 @@ export default () => {
       <Form onFinish={onFinish}>
         <Form.Item
           label="文档题目"
-          name="markname"
+          name="title"
           rules={[{ required: true, message: "请填写文章题目" }]}
         >
           <Input />
         </Form.Item>
         <div className={style.addIcontNext}>
           <Form.Item
-            name="marktype"
+            name="type"
             label="文档类型"
             rules={[{ required: true, message: "请选择文档类型" }]}
           >
