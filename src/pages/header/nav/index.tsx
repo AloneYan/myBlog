@@ -17,13 +17,22 @@ const Nav = (props: any) => {
 
   useEffect(() => {
     getUser();
-    const currNavIdx = menus.findIndex((item) => item.path === pathname);
-    if (menus[currNavIdx]) {
-      setCurrent(menus[currNavIdx].id);
-    } else {
-      setCurrent("");
-    }
+    setNavHlight(pathname);
   }, [pathname]);
+
+  // 导航高亮匹配
+  const setNavHlight = (pathname: string) => {
+    for (const item in menus) {
+      const id = menus[item].id;
+      if (pathname.indexOf(id) !== -1) {
+        setCurrent(id);
+        break;
+      } else {
+        setCurrent("mark");
+      }
+    }
+  };
+
   //获取用户信息
   const getUser = () => {
     if (localStorage.user) {
@@ -43,6 +52,7 @@ const Nav = (props: any) => {
       )}
 
       <Row className={style.navCont}>
+        {/* 个人链接 */}
         <Col span={6} className={style.navRight}>
           {navRight.map((item) => (
             <Tooltip title={item.title} key={item.title}>
@@ -63,6 +73,7 @@ const Nav = (props: any) => {
             <img src={wechatImg} alt="微信二维码" />
           </span>
         </Col>
+        {/* 分类导航 */}
         <Col span={18} className={style.navLeft}>
           <Menu selectedKeys={[current]} mode="horizontal">
             {menus.map((item) => (

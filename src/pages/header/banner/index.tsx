@@ -32,7 +32,7 @@ export default () => {
               </span>
             </Tooltip>
             <b>hi！@{user.name}</b>
-            <img src={user.headImg} />
+            <img src={user.headImg} alt="头像" />
           </div>
         )}
       </div>
