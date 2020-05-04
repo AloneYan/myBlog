@@ -11,7 +11,7 @@ import history from "@util/history";
 const Register = (props: any) => {
   const onFinish = async (values: any) => {
     const res = await userApi.addUser(values);
-    if (res.data.status === 0) {
+    if (res.data.status === 200) {
       //把本层路由地址放到redux的preRoter中
       props.setPreRoter("register");
       message.success("注册成功");
@@ -30,7 +30,7 @@ const Register = (props: any) => {
   //标签布局
   const layout = {
     labelCol: { span: 6 },
-    wrapperCol: { span: 18 }
+    wrapperCol: { span: 18 },
   };
 
   return (
@@ -52,7 +52,7 @@ const Register = (props: any) => {
             name={"email"}
             label="你の邮箱"
             rules={[
-              { required: true, type: "email", message: "这个邮箱好像不行" }
+              { required: true, type: "email", message: "这个邮箱好像不行" },
             ]}
           >
             <Input />
@@ -85,5 +85,5 @@ const Register = (props: any) => {
 export default connect(null, (dispatch: any) => ({
   setPreRoter(preRoter: any) {
     dispatch(setPreRoter({ preRoter }));
-  }
+  },
 }))(Register);

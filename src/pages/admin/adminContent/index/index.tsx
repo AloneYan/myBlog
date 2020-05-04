@@ -9,7 +9,7 @@ import style from "./style.less";
 export default () => {
   const goEvery = async (msg: any) => {
     const res = await everyApi.saveEvery({ msg });
-    if (res.data.status === 0) {
+    if (res.data.status === 200) {
       message.success("发布成功");
       history.push("/every");
     }

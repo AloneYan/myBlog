@@ -28,7 +28,7 @@ export default () => {
   const modalFinish = async (val: any) => {
     val.type = "mark";
     const res = await markApi.saveMarkType(val);
-    if (res.data.status === 0) {
+    if (res.data.status === 200) {
       message.success("保存成功");
       getTypeList();
       setVisible(false);
@@ -37,7 +37,7 @@ export default () => {
   //获取文档类型列表
   const getTypeList = async () => {
     const res = await markApi.getMarkTypeList({ type: "mark" });
-    if (res.data.status === 0) {
+    if (res.data.status === 200) {
       setTypeList(res.data.data);
     }
   };

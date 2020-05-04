@@ -12,7 +12,7 @@ export default () => {
   const [list, setList] = useState([]);
   const getList = async () => {
     const res = await everyApi.getList();
-    if (res.data.status === 0) {
+    if (res.data.status === 200) {
       setList(res.data.data);
     }
   };
@@ -32,7 +32,7 @@ export default () => {
           <div
             className={style.everyContent}
             dangerouslySetInnerHTML={{
-              __html: item.msg
+              __html: item.msg,
             }}
           ></div>
           <div className={style.everyFooter}>

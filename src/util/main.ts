@@ -23,9 +23,9 @@ axios.interceptors.request.use(
 //拦截响应，做统一处理
 axios.interceptors.response.use(
   (response) => {
-    if (response.data.status === 0) {
+    if (response.data.status === 200) {
       return response;
-    } else if (response.data.status === -2) {
+    } else if (response.data.status === 601) {
       Modal.confirm({
         title: "提示",
         cancelText: "就不",

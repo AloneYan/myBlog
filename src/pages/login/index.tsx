@@ -10,7 +10,7 @@ import history from "@util/history";
 const Login = (props: any) => {
   const onFinish = async (values: any) => {
     const res = await userApi.getUser(values);
-    if (res.data.status === 0) {
+    if (res.data.status === 200) {
       //保存token和用户信息到浏览器缓存中
       localStorage.setItem("token", res.data.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.data.user));
@@ -37,7 +37,7 @@ const Login = (props: any) => {
   // 标签布局
   const layout = {
     labelCol: { span: 6 },
-    wrapperCol: { span: 18 }
+    wrapperCol: { span: 18 },
   };
 
   return (
@@ -88,7 +88,7 @@ const Login = (props: any) => {
 //在redux中取出preRoter上层路由
 export default connect(
   (state: any) => ({
-    preRoter: state.common.preRoter
+    preRoter: state.common.preRoter,
   }),
   null
 )(Login);

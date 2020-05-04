@@ -13,7 +13,7 @@ export default () => {
     // const res = await writeApi.saveWrite({
     //   msg: msg,
     // });
-    // if (res.data.status === 0) {
+    // if (res.data.status === 200) {
     //   message.success("评论成功");
     //   getList();
     //   callBack();

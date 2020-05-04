@@ -18,7 +18,7 @@ export default () => {
     const res = await writeApi.saveWrite({
       msg: msg,
     });
-    if (res.data.status === 0) {
+    if (res.data.status === 200) {
       message.success("评论成功");
       getList();
       callBack();
@@ -27,7 +27,7 @@ export default () => {
   //获取评论列表
   const getList = async () => {
     const res = await writeApi.getWrite();
-    if (res.data.status === 0) {
+    if (res.data.status === 200) {
       setList(res.data.data);
     }
   };
