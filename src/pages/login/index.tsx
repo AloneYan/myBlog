@@ -9,6 +9,7 @@ import history from "@util/history";
 
 const Login = (props: any) => {
   const onFinish = async (values: any) => {
+    console.log(values);
     const res = await userApi.getUser(values);
     if (res.data.status === 200) {
       //保存token和用户信息到浏览器缓存中
@@ -17,7 +18,7 @@ const Login = (props: any) => {
       message.success("登录成功");
       //如果从注册页跳转回来 就跳回主页面，否则跳回上一层
       if (props.preRoter === "register") {
-        history.push("/app");
+        history.push("/");
       } else {
         history.goBack();
       }

@@ -16,4 +16,8 @@ export default {
   getMarkList() {
     return axios.get("/blog/list");
   },
+  //获取文档详情
+  getMark(params: object): any {
+    return axios.get("/blog", { params });
+  },
 };

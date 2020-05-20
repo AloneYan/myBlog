@@ -1,22 +1,39 @@
 import React, { useState, useEffect } from "react";
 import BaftEditor from "@components/baftEditor";
-import { Form, Input, Select, Modal, Button, message } from "antd";
+import { Form, Input, Select, Modal, Button, message, Spin } from "antd";
 
 import style from "./style.less";
 import Iconfont from "@components/myIconfont";
 import history from "@util/history";
 import markApi from "@api/mark-api";
+import { createForm } from "rc-form";
 
 interface GoMark {}
 
-export default () => {
+export default (props: any) => {
   const [fwbCont, setFwbCont] = useState("");
   const [visible, setVisible] = useState(false);
   const [typeList, setTypeList] = useState([]);
+  const [res, setRes] = useState<any>();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getTypeList();
-  }, []);
+    if (props.location.state) {
+      setLoading(true);
+      getOne(props.location.state);
+    } else {
+    }
+  }, [props]);
+
+  const getOne = async (id: any) => {
+    const params = {
+      id: id,
+    };
+    const res = await markApi.getMark(params);
+    setRes(res.data.data);
+    setLoading(false);
+  };
 
   //添加文档类型对话框
   const showModal = () => {
@@ -57,61 +74,75 @@ export default () => {
   const addReturn = () => {
     history.push("/admin/mark");
   };
-  return (
-    <div className={style.add}>
-      <div className={style.addReturn} onClick={addReturn}>
-        <Iconfont type="icon-tuichu" />
-      </div>
+
+  const ExportForm = createForm()(((prop: any) => {
+    const { getFieldDecorator, setFieldsValue } = prop.form;
+    return (
       <Form onFinish={onFinish}>
-        <Form.Item
-          label="文档题目"
-          name="title"
-          rules={[{ required: true, message: "请填写文章题目" }]}
-        >
-          <Input />
+        <Form.Item label="文档题目">
+          {getFieldDecorator("title", {
+            initialValue: res?.title ? res.title : "",
+            rules: [
+              {
+                required: true,
+                message: "请填写文章题目",
+                validateTrigger: "onBlur",
+              },
+            ],
+          })(<Input />)}
         </Form.Item>
         <div className={style.addIcontNext}>
-          <Form.Item
-            name="type"
-            label="文档类型"
-            rules={[{ required: true, message: "请选择文档类型" }]}
-          >
-            <Select placeholder="请选择文档类型">
-              {typeList.map((item: any) => (
-                <Select.Option key={item.id} value={item.id}>
-                  {item.name}
-                </Select.Option>
-              ))}
-            </Select>
+          <Form.Item label="文档类型">
+            {getFieldDecorator("type", {
+              initialValue: res?.type ? res.type : "",
+              rules: [{ required: true, message: "请选择文档类型" }],
+            })(
+              <Select placeholder="请选择文档类型">
+                {typeList.map((item: any) => (
+                  <Select.Option key={item.id} value={item.id}>
+                    {item.name}
+                  </Select.Option>
+                ))}
+              </Select>
+            )}
           </Form.Item>
           <div className={style.addIcont} onClick={showModal}>
             <Iconfont type="icon-tianjia" />
           </div>
         </div>
-        <BaftEditor submit={goMark} />
+        <BaftEditor submit={goMark} content={res?.content} />
       </Form>
-
-      <Modal
-        title="添加文档类型"
-        okType="primary"
-        visible={visible}
-        onCancel={handleCancel}
-        footer={null}
-      >
-        <Form onFinish={modalFinish}>
-          <Form.Item label="类型名称" name="name">
-            <Input />
-          </Form.Item>
-          <Form.Item label="类型key" name="code">
-            <Input />
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit">
-              提交
-            </Button>
-          </Form.Item>
-        </Form>
-      </Modal>
-    </div>
+    );
+  }) as any);
+  return (
+    <Spin tip="加载中..." spinning={loading}>
+      <div className={style.add}>
+        <div className={style.addReturn} onClick={addReturn}>
+          <Iconfont type="icon-tuichu" />
+        </div>
+        <ExportForm />
+        <Modal
+          title="添加文档类型"
+          okType="primary"
+          visible={visible}
+          onCancel={handleCancel}
+          footer={null}
+        >
+          <Form onFinish={modalFinish}>
+            <Form.Item label="类型名称" name="name">
+              <Input />
+            </Form.Item>
+            <Form.Item label="类型key" name="code">
+              <Input />
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                提交
+              </Button>
+            </Form.Item>
+          </Form>
+        </Modal>
+      </div>
+    </Spin>
   );
 };

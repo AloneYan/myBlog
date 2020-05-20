@@ -7,6 +7,7 @@ import style from "./style.less";
 
 export default (props: any) => {
   const colors = [
+    "transparent",
     "#000000",
     "#373636",
     "#626060",
@@ -28,11 +29,11 @@ export default (props: any) => {
     "#fad484",
     "#017153",
     "#7db54e",
-    "#83db8d"
+    "#83db8d",
   ];
 
   const [editorState, setEditorState] = useState(
-    BraftEditor.createEditorState(null)
+    BraftEditor.createEditorState(props.content)
   );
   const handleChange = (editorState: any) => {
     setEditorState(editorState.toHTML());

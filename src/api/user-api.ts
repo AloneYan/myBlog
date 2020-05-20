@@ -7,5 +7,5 @@ export default {
   //登录
   getUser(user: object) {
     return axios.post("/login", user);
-  }
+  },
 };

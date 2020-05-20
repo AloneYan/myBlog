@@ -2,9 +2,10 @@ import axios from "axios";
 import { message, Modal } from "antd";
 import moment from "moment";
 import history from "./history";
+import qs from "qs";
 
 // axios.defaults.baseURL = "http://dshvv.com:7001";
-axios.defaults.baseURL = "http://192.168.0.102:7001";
+axios.defaults.baseURL = "http://192.168.0.102:8081";
 
 // 请求拦截
 axios.interceptors.request.use(
@@ -13,6 +14,9 @@ axios.interceptors.request.use(
     if (token) {
       // 判断是否存在token，如果存在的话，则每个http header都加上token
       config.headers.token = token; //请求头加上token
+    }
+    if (!Boolean(config.headers.json)) {
+      config.data = qs.stringify(config.data);
     }
     return config;
   },
@@ -37,7 +41,7 @@ axios.interceptors.response.use(
         onCancel() {},
       });
     } else {
-      message.error(response.data.error);
+      message.error(response.data.message);
     }
     return response;
   },

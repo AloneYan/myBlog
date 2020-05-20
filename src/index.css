@@ -1,9 +1,9 @@
 @font-face {
   font-family: "myFont";
-  src: url("./assets/fonts/myFont.ttf") format("truetype");
+  src: url("./assets/fonts/Font1.ttf") format("truetype");
 }
 * {
-  font-family: "myFont";
+  font-family: "myFont", "Microsoft Yahei", sans-serif;
   cursor: url("~@assets/images/coco.cur"), auto;
 }
 li {

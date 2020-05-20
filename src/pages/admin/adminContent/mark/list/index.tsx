@@ -1,18 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Button } from "antd";
+import moment from "moment";
 
 import style from "./style.less";
 import history from "@util/history";
 import markApi from "@api/mark-api";
 
 export default () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     getList();
   }, []);
   //获取文档列表
   const getList = async () => {
+    setLoading(true);
     const res = await markApi.getMarkList();
-    console.log(res);
+    if (res.data.status === 200) {
+      setData(res.data.data);
+    }
+    setLoading(false);
   };
   //列表复选框状态
   const rowSelection = {
@@ -24,6 +32,64 @@ export default () => {
   const addMark = () => {
     history.push("/admin/mark/add");
   };
+  //编辑文档
+  const editMark = (id: string | number) => {
+    console.log(id);
+    history.push({
+      pathname: "/admin/mark/add",
+      state: id,
+    });
+  };
+
+  const columns = [
+    {
+      title: "题目",
+      dataIndex: "title",
+    },
+    {
+      title: "类型",
+      dataIndex: "type",
+    },
+    {
+      title: "点赞数",
+      dataIndex: "loveNum",
+    },
+    {
+      title: "评论数",
+      dataIndex: "commentNum",
+    },
+    {
+      title: "阅读量",
+      dataIndex: "readNum",
+    },
+    {
+      title: "日期",
+      key: "createTime",
+      render: (row: any) => {
+        return (
+          <span>{moment(row.createTime).format("YYYY-MM-DD hh:mm:ss")}</span>
+        );
+      },
+    },
+    {
+      title: "操作",
+      key: "action",
+      render: (row: any) => {
+        return (
+          <span style={{ color: "blue" }}>
+            <span
+              onClick={() => {
+                editMark(row.id);
+              }}
+            >
+              编辑
+            </span>{" "}
+            | <span style={{ color: "red" }}>删除</span>
+          </span>
+        );
+      },
+    },
+  ];
 
   return (
     <div className={style.mark}>
@@ -38,6 +104,8 @@ export default () => {
             type: "checkbox",
             ...rowSelection,
           }}
+          loading={loading}
+          rowKey={(record: any, index) => record.id + index}
           columns={columns}
           dataSource={data}
         />
@@ -45,63 +113,3 @@ export default () => {
     </div>
   );
 };
-
-export const columns = [
-  {
-    title: "题目",
-    dataIndex: "name",
-  },
-  {
-    title: "类型",
-    dataIndex: "age",
-  },
-  {
-    title: "作者",
-    dataIndex: "address",
-  },
-  {
-    title: "评论数",
-    dataIndex: "address",
-  },
-  {
-    title: "日期",
-    dataIndex: "address",
-  },
-  {
-    title: "操作",
-    key: "action",
-    render: () => (
-      <span>
-        <span>编辑</span>
-        <span>删除</span>
-      </span>
-    ),
-  },
-];
-
-export const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-  },
-  {
-    key: "4",
-    name: "Disabled User",
-    age: 99,
-    address: "Sidney No. 1 Lake Park",
-  },
-];

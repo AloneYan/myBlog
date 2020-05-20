@@ -2,29 +2,25 @@
   width: 100%;
   .markContent {
     padding: 8px 20px;
+    position: relative;
+    .markContentType {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      margin-top: 8px;
+      padding: 0 20px;
+      color: #fff;
+      font-weight: bold;
+      background: linear-gradient(to left, #e889b7, #ffffff);
+      line-height: 30px;
+    }
     .markContentName {
       font-size: 18px;
-      span {
-        width: 80px;
-        height: 26px;
-        text-align: center;
-        line-height: 26px;
-        font-size: 12px;
-        display: inline-block;
-        padding: 0 10px;
-        background-color: #e889b7;
-        color: #fff;
-        margin-right: 20px;
-        border-radius: 5px;
-      }
-      b {
-        line-height: 30px;
-      }
+      line-height: 30px;
     }
     .markContentAuthor {
       color: #364f6b;
       font-size: 12px;
-      padding-left: 100px;
       span {
         margin-right: 10px;
       }

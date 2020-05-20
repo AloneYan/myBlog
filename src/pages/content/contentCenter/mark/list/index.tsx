@@ -34,12 +34,12 @@ export default () => {
         renderItem={(item) => (
           <div className={`card ${style.mark}`} onClick={goContent}>
             <div className={style.markContent}>
+              <div className={style.markContentType}>{item.type}</div>
               <div className={style.markContentName}>
-                <span>{item.type}</span>
                 <b>{item.name}</b>
               </div>
               <div className={style.markContentAuthor}>
-                <IconFont type="icon-zuozhe" />
+                <IconFont type="icon-zuozhe1" />
                 {item.author}
               </div>
               <p className={style.markContentCont}>{item.content}</p>

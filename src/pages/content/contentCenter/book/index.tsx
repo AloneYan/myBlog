@@ -34,25 +34,16 @@ export default () => {
             </div>
             <ul className={style.bookCont}>
               <li className={style.bookContName}>
-                <span>
-                  <IconFont type="icon-shu" />
-                  书名：
-                </span>
+                <span>书名：</span>
                 {item.bookName}
               </li>
               <li className={style.bookContAuthor}>
-                <span>
-                  <IconFont type="icon-zuozhe" />
-                  作者：
-                </span>
+                <span>作者：</span>
                 {item.author}
               </li>
               <li className={style.bookContAuthor}>
                 <span>
-                  <span>
-                    <IconFont type="icon-tuijian" />
-                    推荐：
-                  </span>
+                  <span>推荐：</span>
                   <Rate
                     disabled
                     defaultValue={5}
