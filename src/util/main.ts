@@ -4,8 +4,8 @@ import moment from "moment";
 import history from "./history";
 import qs from "qs";
 
-// axios.defaults.baseURL = "http://dshvv.com:7001";
-axios.defaults.baseURL = "http://192.168.0.102:8081";
+axios.defaults.baseURL = "http://hhan.top:7777";
+//axios.defaults.baseURL = "http://192.168.0.102:8081";
 
 // 请求拦截
 axios.interceptors.request.use(
@@ -31,10 +31,10 @@ axios.interceptors.response.use(
       return response;
     } else if (response.data.status === 601) {
       Modal.confirm({
-        title: "提示",
+        title: "一条小提示",
         cancelText: "就不",
         okText: "去登录",
-        content: "登录状态失效啦，重新登录吧～",
+        content: "兄dei你的登录状态失效啦，重新登录吧～",
         onOk() {
           history.push("/login");
         },

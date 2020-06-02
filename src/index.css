@@ -6,9 +6,6 @@
   font-family: "myFont", "Microsoft Yahei", sans-serif;
   cursor: url("~@assets/images/coco.cur"), auto;
 }
-li {
-  list-style: none;
-}
 
 /* 清浮动 */
 .clearfix_after {

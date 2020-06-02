@@ -1,55 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { List } from "antd";
+import moment from "moment";
 
 import style from "./style.less";
 import ListFooter from "@components/listFooter";
 import IconFont from "@components/myIconfont";
 import history from "@util/history";
-
-const data = [
-  {
-    type: "JavaScript",
-    author: "阎涵",
-    name: "react的高级成长计划",
-    content:
-      "一点废话 hi！这里是一只96年出生的兔子 日常工作就是写写代码（虽然就是个小白） 日常爱好就是追动漫打游戏（虽然菜的要死） 日常活动就是画画插画（虽然画的超级难看） 大概在我13岁的时候家里有了一台电脑",
-  },
-  {
-    type: "React",
-    author: "阎涵",
-    name: "react的高级成长计划",
-    content:
-      "一点废话 hi！这里是一只96年出生的兔子 日常工作就是写写代码（虽然就是个小白） 日常爱好就是追动漫打游戏（虽然菜的要死） 日常活动就是画画插画（虽然画的超级难看） 大概在我13岁的时候家里有了一台电脑",
-  },
-];
+import markApi from "@api/mark-api";
 
 export default () => {
-  const goContent = () => {
-    history.push("/content");
+  const [markList, setList] = useState([]);
+  useEffect(() => {
+    getMarkList();
+  }, []);
+  const goContent = (id: string | number) => {
+    history.push({
+      pathname: "/content",
+      state: id,
+    });
+  };
+  //获取文档列表
+  const getMarkList = async () => {
+    const res = await markApi.getMarkList();
+    if (res.data.status === 200) {
+      setList(res.data.data);
+    }
   };
   return (
     <>
       <List
-        dataSource={data}
-        renderItem={(item) => (
-          <div className={`card ${style.mark}`} onClick={goContent}>
+        dataSource={markList}
+        renderItem={(item: any) => (
+          <div
+            className={`card ${style.mark}`}
+            onClick={() => {
+              goContent(item.id);
+            }}
+          >
             <div className={style.markContent}>
               <div className={style.markContentType}>{item.type}</div>
               <div className={style.markContentName}>
-                <b>{item.name}</b>
+                <b>{item.title}</b>
               </div>
               <div className={style.markContentAuthor}>
                 <IconFont type="icon-zuozhe1" />
-                {item.author}
+                兔纸
               </div>
-              <p className={style.markContentCont}>{item.content}</p>
+              <p className={style.markContentCont}>{item.des}</p>
             </div>
             <ListFooter
               {...{
-                time: "2020-03-30",
-                look: 2000,
-                good: 2,
-                talk: 12,
+                time: moment(item.createTime).format("YYYY-MM-DD"),
+                look: item.readNum,
+                good: item.loveNum,
+                talk: item.commentNum,
               }}
             />
           </div>
