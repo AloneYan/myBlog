@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "braft-editor/dist/index.css";
 import BraftEditor from "braft-editor";
 import { Button } from "antd";
@@ -33,10 +33,13 @@ export default (props: any) => {
   ];
 
   const [editorState, setEditorState] = useState(
-    BraftEditor.createEditorState(props.content)
+    BraftEditor.createEditorState(props.content?props.content:'')
   );
-  const handleChange = (editorState: any) => {
-    setEditorState(editorState.toHTML());
+
+  const handleChange = (editorStateCtx: any) => {
+    console.log(1212)
+    setEditorState(editorStateCtx.toHTML());
+    props?.change(editorState)
   };
 
   return (
@@ -49,17 +52,6 @@ export default (props: any) => {
         colors={colors}
         onChange={handleChange}
       />
-      <div className={style.everyButton}>
-        <Button
-          type="primary"
-          htmlType="submit"
-          onClick={() => {
-            props.submit(editorState);
-          }}
-        >
-          发布
-        </Button>
-      </div>
     </>
   );
 };

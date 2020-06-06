@@ -8,14 +8,14 @@ import history from "@util/history";
 import markApi from "@api/mark-api";
 import { createForm } from "rc-form";
 
-interface GoMark {}
+interface GoMark { }
 
 export default (props: any) => {
-  const [fwbCont, setFwbCont] = useState("");
   const [visible, setVisible] = useState(false);
   const [typeList, setTypeList] = useState([]);
   const [res, setRes] = useState<any>();
   const [loading, setLoading] = useState(false);
+  let fwbCont = '';
 
   useEffect(() => {
     getTypeList();
@@ -59,16 +59,16 @@ export default (props: any) => {
     }
   };
   //获取富文本内容
-  const goMark = (val: string) => {
-    setFwbCont(val);
+  const baftEditorChange = (val: string) => {
+    fwbCont = val;
   };
+
   //发布
   const onFinish = async (val: any) => {
-    const param = val;
-    param.content = fwbCont;
-    console.log(param);
-    const res = await markApi.saveMark(param);
-    console.log(res);
+    // const param = val;
+    // param.content = fwbCont;
+    // const res = await markApi.saveMark(param);
+    console.log(ExportForm);
   };
   //返回列表跳转
   const addReturn = () => {
@@ -76,6 +76,7 @@ export default (props: any) => {
   };
 
   const ExportForm = createForm()(((prop: any) => {
+    console.log(8989)
     const { getFieldDecorator, setFieldsValue } = prop.form;
     return (
       <Form onFinish={onFinish}>
@@ -110,7 +111,15 @@ export default (props: any) => {
             <Iconfont type="icon-tianjia" />
           </div>
         </div>
-        <BaftEditor submit={goMark} content={res?.content} />
+        <BaftEditor change={baftEditorChange} content={res?.content} />
+        <div className={style.everyButton}>
+          <Button
+            type="primary"
+            htmlType="submit"
+          >
+            发布
+        </Button>
+        </div>
       </Form>
     );
   }) as any);
