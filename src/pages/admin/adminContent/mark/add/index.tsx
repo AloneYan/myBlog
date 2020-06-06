@@ -63,13 +63,7 @@ export default (props: any) => {
     fwbCont = val;
   };
 
-  //发布
-  const onFinish = async (val: any) => {
-    // const param = val;
-    // param.content = fwbCont;
-    // const res = await markApi.saveMark(param);
-    console.log(ExportForm);
-  };
+  
   //返回列表跳转
   const addReturn = () => {
     history.push("/admin/mark");
@@ -78,6 +72,11 @@ export default (props: any) => {
   const ExportForm = createForm()(((prop: any) => {
     console.log(8989)
     const { getFieldDecorator, setFieldsValue } = prop.form;
+    //发布
+  const onFinish = async (val: any) => {
+    const param = {...prop.form.getFieldsValue(),content:fwbCont};
+    await markApi.saveMark(param);
+  };
     return (
       <Form onFinish={onFinish}>
         <Form.Item label="文档题目">
