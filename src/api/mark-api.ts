@@ -20,4 +20,8 @@ export default {
   getMark(params: object): any {
     return axios.get("/blog", { params });
   },
+  //删除文档
+  rmMark(params: object): any {
+    return axios.delete("/blog", { params });
+  },
 };

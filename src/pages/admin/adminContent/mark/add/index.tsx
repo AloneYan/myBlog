@@ -141,9 +141,6 @@ export default (props: any) => {
             <Form.Item label="类型名称" name="name">
               <Input />
             </Form.Item>
-            <Form.Item label="类型key" name="code">
-              <Input />
-            </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit">
                 提交

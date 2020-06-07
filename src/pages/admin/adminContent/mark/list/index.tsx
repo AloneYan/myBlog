@@ -47,7 +47,10 @@ export default () => {
     setMarkId(id);
   };
   //确定删除文档
-  const handleOk = () => {};
+  const handleOk = async () => {
+    const res = await markApi.rmMark({ id: markId });
+    console.log(res);
+  };
   //关闭删除文档弹窗
   const handleCancel = () => {
     setVisible(false);
