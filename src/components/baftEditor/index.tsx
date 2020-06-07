@@ -33,13 +33,12 @@ export default (props: any) => {
   ];
 
   const [editorState, setEditorState] = useState(
-    BraftEditor.createEditorState(props.content?props.content:'')
+    BraftEditor.createEditorState(props.content ? props.content : "")
   );
 
   const handleChange = (editorStateCtx: any) => {
-    console.log(1212)
     setEditorState(editorStateCtx.toHTML());
-    props?.change(editorState)
+    props?.change(editorState);
   };
 
   return (

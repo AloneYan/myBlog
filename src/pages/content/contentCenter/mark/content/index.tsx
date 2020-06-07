@@ -66,12 +66,10 @@ export default (props: any) => {
           </span>
         </div>
       </div>
-      <pre>
-        <div
-          className={style.contentCont}
-          dangerouslySetInnerHTML={{ __html: markContent.content }}
-        ></div>
-      </pre>
+      <div
+        className={style.contentCont}
+        dangerouslySetInnerHTML={{ __html: markContent.content }}
+      ></div>
       <Footer />
       <MyComment onSubmit={onSubmit} />
     </div>

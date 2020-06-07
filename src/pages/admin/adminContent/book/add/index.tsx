@@ -81,7 +81,7 @@ export default () => {
       </Form>
 
       <Modal
-        title="添加文档类型"
+        title="添加书单类型"
         okType="primary"
         visible={visible}
         onCancel={handleCancel}
@@ -89,9 +89,6 @@ export default () => {
       >
         <Form onFinish={modalFinish}>
           <Form.Item label="类型名称" name="typename">
-            <Input />
-          </Form.Item>
-          <Form.Item label="类型key" name="key">
             <Input />
           </Form.Item>
           <Form.Item>

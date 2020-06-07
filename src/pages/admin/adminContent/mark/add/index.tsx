@@ -8,14 +8,14 @@ import history from "@util/history";
 import markApi from "@api/mark-api";
 import { createForm } from "rc-form";
 
-interface GoMark { }
+interface GoMark {}
 
 export default (props: any) => {
   const [visible, setVisible] = useState(false);
   const [typeList, setTypeList] = useState([]);
   const [res, setRes] = useState<any>();
   const [loading, setLoading] = useState(false);
-  let fwbCont = '';
+  let fwbCont = "";
 
   useEffect(() => {
     getTypeList();
@@ -63,20 +63,24 @@ export default (props: any) => {
     fwbCont = val;
   };
 
-  
   //返回列表跳转
   const addReturn = () => {
     history.push("/admin/mark");
   };
 
   const ExportForm = createForm()(((prop: any) => {
-    console.log(8989)
     const { getFieldDecorator, setFieldsValue } = prop.form;
     //发布
-  const onFinish = async (val: any) => {
-    const param = {...prop.form.getFieldsValue(),content:fwbCont};
-    await markApi.saveMark(param);
-  };
+    const onFinish = async () => {
+      if (fwbCont !== "") {
+        const param = { ...prop.form.getFieldsValue(), content: fwbCont };
+        const res = await markApi.saveMark(param);
+        if (res.data.status == 200) {
+          message.success("发布成功");
+          addReturn();
+        }
+      }
+    };
     return (
       <Form onFinish={onFinish}>
         <Form.Item label="文档题目">
@@ -112,12 +116,9 @@ export default (props: any) => {
         </div>
         <BaftEditor change={baftEditorChange} content={res?.content} />
         <div className={style.everyButton}>
-          <Button
-            type="primary"
-            htmlType="submit"
-          >
+          <Button type="primary" htmlType="submit">
             发布
-        </Button>
+          </Button>
         </div>
       </Form>
     );

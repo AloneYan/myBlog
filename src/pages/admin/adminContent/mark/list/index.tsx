@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Button } from "antd";
+import { Table, Button, Modal } from "antd";
 import moment from "moment";
 
 import style from "./style.less";
@@ -9,6 +9,8 @@ import markApi from "@api/mark-api";
 export default () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [markId, setMarkId] = useState<string | number>("");
 
   useEffect(() => {
     getList();
@@ -34,11 +36,21 @@ export default () => {
   };
   //编辑文档
   const editMark = (id: string | number) => {
-    console.log(id);
     history.push({
       pathname: "/admin/mark/add",
       state: id,
     });
+  };
+  //删除文档
+  const deleteMark = (id: string | number) => {
+    setVisible(true);
+    setMarkId(id);
+  };
+  //确定删除文档
+  const handleOk = () => {};
+  //关闭删除文档弹窗
+  const handleCancel = () => {
+    setVisible(false);
   };
 
   const columns = [
@@ -84,7 +96,15 @@ export default () => {
             >
               编辑
             </span>{" "}
-            | <span style={{ color: "red" }}>删除</span>
+            |{" "}
+            <span
+              style={{ color: "red" }}
+              onClick={() => {
+                deleteMark(row.id);
+              }}
+            >
+              删除
+            </span>
           </span>
         );
       },
@@ -109,6 +129,16 @@ export default () => {
           columns={columns}
           dataSource={data}
         />
+        <Modal
+          title="删了？"
+          visible={visible}
+          onOk={handleOk}
+          okText="心意已决"
+          cancelText="再想想"
+          onCancel={handleCancel}
+        >
+          确定删除吗
+        </Modal>
       </div>
     </div>
   );
