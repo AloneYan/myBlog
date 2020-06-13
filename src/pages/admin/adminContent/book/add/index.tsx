@@ -60,22 +60,27 @@ export default (props: any) => {
   const baftEditorChange = (val: string) => {
     fwbCont = val;
   };
-  //发布
-  const onFinish = (val: any) => {
-    const param = val;
-    param.content = fwbCont;
-    console.log(param);
-  };
   //返回列表跳转
   const addReturn = () => {
     history.push("/admin/mark");
   };
   const ExportForm = createForm()(((prop: any) => {
     const { getFieldDecorator, setFieldsValue } = prop.form;
+    //发布
+    const onFinish = async () => {
+      if (fwbCont !== "") {
+        const param = { ...prop.form.getFieldsValue(), content: fwbCont };
+        const res = await bookApi.saveBook(param);
+        if (res.data.status == 200) {
+          message.success("发布成功");
+          addReturn();
+        }
+      }
+    };
     return (
       <Form onFinish={onFinish}>
         <Form.Item label="书单名称">
-          {getFieldDecorator("bookName", {
+          {getFieldDecorator("name", {
             initialValue: res?.bookName ? res.bookName : "",
             rules: [
               {
@@ -87,7 +92,7 @@ export default (props: any) => {
           })(<Input />)}
         </Form.Item>
         <Form.Item label="书单作者">
-          {getFieldDecorator("bookAuthor", {
+          {getFieldDecorator("author", {
             initialValue: res?.bookAuthor ? res.bookAuthor : "",
             rules: [
               {
@@ -99,7 +104,7 @@ export default (props: any) => {
           })(<Input />)}
         </Form.Item>
         <Form.Item label="推荐指数">
-          {getFieldDecorator("bookStar", {
+          {getFieldDecorator("star", {
             initialValue: res?.bookStar ? res.bookStar : "",
             rules: [
               {

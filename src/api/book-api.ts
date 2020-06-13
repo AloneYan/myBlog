@@ -8,6 +8,10 @@ export default {
   getMarkTypeList(params: object) {
     return axios.get("/dicts/list", { params });
   },
+  //保存书单
+  saveBook(param: object) {
+    return axios.post("/book", param);
+  },
   //获取日常列表
   getList() {
     return axios.get("/mood/list");
