@@ -75,8 +75,8 @@ export default (props: any) => {
     return (
       <Form onFinish={onFinish}>
         <Form.Item label="书单名称">
-          {getFieldDecorator("title", {
-            initialValue: res?.title ? res.title : "",
+          {getFieldDecorator("bookName", {
+            initialValue: res?.bookName ? res.bookName : "",
             rules: [
               {
                 required: true,
@@ -87,8 +87,8 @@ export default (props: any) => {
           })(<Input />)}
         </Form.Item>
         <Form.Item label="书单作者">
-          {getFieldDecorator("title", {
-            initialValue: res?.title ? res.title : "",
+          {getFieldDecorator("bookAuthor", {
+            initialValue: res?.bookAuthor ? res.bookAuthor : "",
             rules: [
               {
                 required: true,
@@ -99,8 +99,8 @@ export default (props: any) => {
           })(<Input />)}
         </Form.Item>
         <Form.Item label="推荐指数">
-          {getFieldDecorator("title", {
-            initialValue: res?.title ? res.title : "",
+          {getFieldDecorator("bookStar", {
+            initialValue: res?.bookStar ? res.bookStar : "",
             rules: [
               {
                 required: true,
