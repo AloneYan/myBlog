@@ -75,7 +75,7 @@ export default (props: any) => {
       if (fwbCont !== "") {
         const param = { ...prop.form.getFieldsValue(), content: fwbCont };
         const res = await markApi.saveMark(param);
-        if (res.data.status == 200) {
+        if (res.data.status === 200) {
           message.success("发布成功");
           addReturn();
         }

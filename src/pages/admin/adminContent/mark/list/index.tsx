@@ -49,7 +49,7 @@ export default () => {
   //确定删除文档
   const handleOk = async () => {
     const res = await markApi.rmMark({ id: markId });
-    if (res.data.status == 200) {
+    if (res.data.status === 200) {
       setVisible(false);
       message.success("删除成功");
       getList();

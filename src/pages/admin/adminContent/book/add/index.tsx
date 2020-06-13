@@ -26,7 +26,7 @@ export default (props: any) => {
   }, [props]);
   //获取书单内容
   const getOne = async (id: any) => {
-    const res = await bookApi.getOne({ id: id });
+    const res = await bookApi.getBook({ id: id });
     setRes(res.data.data);
     setLoading(false);
   };
@@ -67,10 +67,19 @@ export default (props: any) => {
     const onFinish = async () => {
       if (fwbCont !== "") {
         const param = { ...prop.form.getFieldsValue(), content: fwbCont };
-        const res = await bookApi.saveBook(param);
-        if (res.data.status == 200) {
-          message.success("发布成功");
-          addReturn();
+        if (!props.location.state) {
+          const res = await bookApi.saveBook(param);
+          if (res.data.status === 200) {
+            message.success("发布成功");
+            addReturn();
+          }
+        } else {
+          param.id = props.location.state;
+          const res = await bookApi.updateBook(param);
+          if (res.data.status === 200) {
+            message.success("修改成功");
+            addReturn();
+          }
         }
       }
     };

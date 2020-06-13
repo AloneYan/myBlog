@@ -48,7 +48,7 @@ export default () => {
   //确定删除书单
   const handleOk = async () => {
     const res = await bookApi.rmBook({ id: bookId });
-    if (res.data.status == 200) {
+    if (res.data.status === 200) {
       setVisible(false);
       message.success("删除成功");
       getList();

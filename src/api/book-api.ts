@@ -12,12 +12,16 @@ export default {
   saveBook(param: object) {
     return axios.post("/book", param);
   },
+  //保存书单
+  updateBook(param: object) {
+    return axios.put("/book", param);
+  },
   //获取书单列表
   getList() {
     return axios.get("/book/list");
   },
   //获取书单详情
-  getOne(params: object) {
+  getBook(params: object) {
     return axios.get("/book", { params });
   },
   //删除书单
