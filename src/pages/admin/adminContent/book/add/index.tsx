@@ -24,12 +24,9 @@ export default (props: any) => {
     } else {
     }
   }, [props]);
-  //获取文档内容
+  //获取书单内容
   const getOne = async (id: any) => {
-    const params = {
-      id: id,
-    };
-    const res = await bookApi.saveMarkType(params);
+    const res = await bookApi.getOne({ id: id });
     setRes(res.data.data);
     setLoading(false);
   };
@@ -62,7 +59,7 @@ export default (props: any) => {
   };
   //返回列表跳转
   const addReturn = () => {
-    history.push("/admin/mark");
+    history.push("/admin/book");
   };
   const ExportForm = createForm()(((prop: any) => {
     const { getFieldDecorator, setFieldsValue } = prop.form;

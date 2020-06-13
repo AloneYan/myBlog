@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Button } from "antd";
+import { Table, Button, message, Modal } from "antd";
 import moment from "moment";
 
 import style from "./style.less";
@@ -7,13 +7,20 @@ import history from "@util/history";
 import bookApi from "@api/book-api";
 
 export default () => {
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [bookId, setBookId] = useState<string | number>("");
   useEffect(() => {
     getList();
   }, []);
   //获取书单列表
-  const getList = () => {
+  const getList = async () => {
     setLoading(true);
+    const res = await bookApi.getList();
+    if (res.data.status === 200) {
+      setData(res.data.data);
+    }
     setLoading(false);
   };
   //列表复选框状态
@@ -28,12 +35,94 @@ export default () => {
   };
   //编辑书单
   const editBook = (id: string | number) => {
-    console.log(id);
     history.push({
       pathname: "/admin/book/add",
       state: id,
     });
   };
+  //删除书单
+  const deleteBook = (id: string | number) => {
+    setVisible(true);
+    setBookId(id);
+  };
+  //确定删除书单
+  const handleOk = async () => {
+    const res = await bookApi.rmBook({ id: bookId });
+    if (res.data.status == 200) {
+      setVisible(false);
+      message.success("删除成功");
+      getList();
+    }
+  };
+  //关闭删除书单弹窗
+  const handleCancel = () => {
+    setVisible(false);
+  };
+  const columns = [
+    {
+      title: "书名",
+      dataIndex: "name",
+    },
+    {
+      title: "类型",
+      dataIndex: "type",
+    },
+    {
+      title: "推荐",
+      dataIndex: "star",
+    },
+    {
+      title: "作者",
+      dataIndex: "author",
+    },
+    {
+      title: "点赞数",
+      dataIndex: "loveNum",
+    },
+    {
+      title: "评论数",
+      dataIndex: "commentNum",
+    },
+    {
+      title: "阅读量",
+      dataIndex: "readNum",
+    },
+    {
+      title: "日期",
+      key: "createTime",
+      render: (row: any) => {
+        return (
+          <span>{moment(row.createTime).format("YYYY-MM-DD hh:mm:ss")}</span>
+        );
+      },
+    },
+    {
+      title: "操作",
+      key: "action",
+      render: (row: any) => {
+        return (
+          <span style={{ color: "blue" }}>
+            <span
+              onClick={() => {
+                editBook(row.id);
+              }}
+            >
+              编辑
+            </span>{" "}
+            |{" "}
+            <span
+              style={{ color: "red" }}
+              onClick={() => {
+                deleteBook(row.id);
+              }}
+            >
+              删除
+            </span>
+          </span>
+        );
+      },
+    },
+  ];
 
   return (
     <div className={style.book}>
@@ -52,92 +141,17 @@ export default () => {
           columns={columns}
           dataSource={data}
         />
+        <Modal
+          title="删了？"
+          visible={visible}
+          onOk={handleOk}
+          okText="心意已决"
+          cancelText="再想想"
+          onCancel={handleCancel}
+        >
+          确定删除吗
+        </Modal>
       </div>
     </div>
   );
 };
-
-export const columns = [
-  {
-    title: "书名",
-    dataIndex: "name",
-  },
-  {
-    title: "类型",
-    dataIndex: "age",
-  },
-  {
-    title: "推荐",
-    dataIndex: "age",
-  },
-  {
-    title: "作者",
-    dataIndex: "address",
-  },
-  {
-    title: "点赞数",
-    dataIndex: "loveNum",
-  },
-  {
-    title: "评论数",
-    dataIndex: "commentNum",
-  },
-  {
-    title: "阅读量",
-    dataIndex: "readNum",
-  },
-  {
-    title: "日期",
-    key: "createTime",
-    render: (row: any) => {
-      return (
-        <span>{moment(row.createTime).format("YYYY-MM-DD hh:mm:ss")}</span>
-      );
-    },
-  },
-  {
-    title: "操作",
-    key: "action",
-    render: (row: any) => {
-      return (
-        <span style={{ color: "blue" }}>
-          <span
-            onClick={() => {
-              //editBook(row.id);
-            }}
-          >
-            编辑
-          </span>{" "}
-          | <span style={{ color: "red" }}>删除</span>
-        </span>
-      );
-    },
-  },
-];
-
-export const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-  },
-  {
-    key: "4",
-    name: "Disabled User",
-    age: 99,
-    address: "Sidney No. 1 Lake Park",
-  },
-];
