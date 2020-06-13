@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Button, Modal } from "antd";
+import { Table, Button, Modal, message } from "antd";
 import moment from "moment";
 
 import style from "./style.less";
@@ -49,7 +49,11 @@ export default () => {
   //确定删除文档
   const handleOk = async () => {
     const res = await markApi.rmMark({ id: markId });
-    console.log(res);
+    if (res.data.status == 200) {
+      setVisible(false);
+      message.success("删除成功");
+      getList();
+    }
   };
   //关闭删除文档弹窗
   const handleCancel = () => {

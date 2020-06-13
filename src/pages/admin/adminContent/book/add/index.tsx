@@ -33,7 +33,7 @@ export default (props: any) => {
     setRes(res.data.data);
     setLoading(false);
   };
-  //添加文档类型对话框
+  //添加书单类型对话框
   const showModal = () => {
     setVisible(true);
   };
@@ -49,7 +49,7 @@ export default (props: any) => {
       setVisible(false);
     }
   };
-  //获取文档类型列表
+  //获取书单类型列表
   const getTypeList = async () => {
     const res = await bookApi.getMarkTypeList({ type: "book" });
     if (res.data.status === 200) {
@@ -74,25 +74,49 @@ export default (props: any) => {
     const { getFieldDecorator, setFieldsValue } = prop.form;
     return (
       <Form onFinish={onFinish}>
-        <Form.Item label="文档题目">
+        <Form.Item label="书单名称">
           {getFieldDecorator("title", {
             initialValue: res?.title ? res.title : "",
             rules: [
               {
                 required: true,
-                message: "请填写文章题目",
+                message: "请填写书名",
+                validateTrigger: "onBlur",
+              },
+            ],
+          })(<Input />)}
+        </Form.Item>
+        <Form.Item label="书单作者">
+          {getFieldDecorator("title", {
+            initialValue: res?.title ? res.title : "",
+            rules: [
+              {
+                required: true,
+                message: "请填写书单作者",
+                validateTrigger: "onBlur",
+              },
+            ],
+          })(<Input />)}
+        </Form.Item>
+        <Form.Item label="推荐指数">
+          {getFieldDecorator("title", {
+            initialValue: res?.title ? res.title : "",
+            rules: [
+              {
+                required: true,
+                message: "请填推荐星级",
                 validateTrigger: "onBlur",
               },
             ],
           })(<Input />)}
         </Form.Item>
         <div className={style.addIcontNext}>
-          <Form.Item label="文档类型">
+          <Form.Item label="书单类型">
             {getFieldDecorator("type", {
               initialValue: res?.type ? res.type : "",
-              rules: [{ required: true, message: "请选择文档类型" }],
+              rules: [{ required: true, message: "请选择书单类型" }],
             })(
-              <Select placeholder="请选择文档类型">
+              <Select placeholder="请选择书单类型">
                 {typeList.map((item: any) => (
                   <Select.Option key={item.id} value={item.id}>
                     {item.name}
