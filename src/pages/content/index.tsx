@@ -8,10 +8,10 @@ function Contents() {
   return (
     <>
       <Row className="content">
-        <Col span={6} className="contentLeft">
+        <Col span={7} className="contentLeft">
           <ContentLeft />
         </Col>
-        <Col span={18}>
+        <Col span={17}>
           <ContentCenter />
         </Col>
       </Row>

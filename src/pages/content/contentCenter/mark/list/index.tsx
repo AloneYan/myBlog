@@ -44,7 +44,7 @@ export default () => {
               </div>
               <div className={style.markContentAuthor}>
                 <IconFont type="icon-zuozhe1" />
-                兔纸
+                @兔纸
               </div>
               <p className={style.markContentCont}>{item.des}</p>
             </div>

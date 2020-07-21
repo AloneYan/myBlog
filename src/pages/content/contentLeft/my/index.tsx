@@ -15,7 +15,7 @@ export default () => {
         <div className={style.myHeader}>
           <span onClick={goLogin}>
             <img
-              src="http://www.hhan.top/wp-content/uploads/header.jpeg"
+              src="https://dshvv.oss-cn-beijing.aliyuncs.com/yh/1.jpg"
               alt="头像"
             />
             <span>@兔纸</span>
