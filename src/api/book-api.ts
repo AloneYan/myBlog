@@ -12,7 +12,7 @@ export default {
   saveBook(param: object) {
     return axios.post("/book", param);
   },
-  //保存书单
+  //更新书单
   updateBook(param: object) {
     return axios.put("/book", param);
   },

@@ -5,7 +5,7 @@ import history from "./history";
 import qs from "qs";
 
 //axios.defaults.baseURL = "http://hhan.top:7777";
-axios.defaults.baseURL = "http://192.168.0.102:7777";
+axios.defaults.baseURL = "http://localhost:7777"
 
 // 请求拦截
 axios.interceptors.request.use(
