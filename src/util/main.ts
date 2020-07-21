@@ -1,10 +1,11 @@
 import axios from "axios";
 import { message, Modal } from "antd";
+
 import moment from "moment";
 import history from "./history";
 import qs from "qs";
 
-//axios.defaults.baseURL = "http://hhan.top:7777";
+//axios.defaults.baseURL = "http://han96.com:7777";
 axios.defaults.baseURL = "http://localhost:7777"
 
 // 请求拦截

@@ -52,7 +52,7 @@ export default (props: any) => {
       <div className={style.contentHeader}>
         {markContent.title}
         <span>
-          <IconFont type="icon-zuozhe" />
+          <IconFont type="icon-zuozhe1" />
           @兔纸
         </span>
         <div className={style.contentOther}>
