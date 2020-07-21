@@ -1,15 +1,15 @@
 import React from "react";
 
 import My from "./my";
-import Love from "./love";
-// import Music from "./music";
+import Book from "./bookType";
+import Mark from "./markType";
 
 export default () => {
   return (
     <>
       <My />
-      <Love />
-      {/* <Music /> */}
+      <Mark/>
+      <Book/>
     </>
   );
 };
