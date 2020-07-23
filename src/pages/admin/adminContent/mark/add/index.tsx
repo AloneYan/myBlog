@@ -60,7 +60,7 @@ export default (props: any) => {
     }
   };
   //获取markdown内容
-  const test = (val: any) => {
+  const getMarkContent = (val: any) => {
     fwbCont = val;
   };
 
@@ -121,7 +121,10 @@ export default (props: any) => {
             <Iconfont type="icon-tianjia" />
           </div>
         </div>
-        <SimpleMDE onChange={test} value={res?.content ? res.content : ""} />
+        <SimpleMDE
+          onChange={getMarkContent}
+          value={res?.content ? res.content : ""}
+        />
         <div className={style.everyButton}>
           <Button type="primary" htmlType="submit">
             发布

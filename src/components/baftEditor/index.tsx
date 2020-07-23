@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "braft-editor/dist/index.css";
 import BraftEditor from "braft-editor";
 
