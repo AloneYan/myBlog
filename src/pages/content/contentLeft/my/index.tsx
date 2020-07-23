@@ -52,10 +52,7 @@ export default () => {
               <IconFont type="icon-weixin" />
             </li>
             <li>
-              <a
-                target="blank"
-                href="https://github.com/AloneYan?tab=repositories"
-              >
+              <a target="blank" href="https://github.com/rabbit-y">
                 <IconFont type="icon-github" />
               </a>
             </li>
