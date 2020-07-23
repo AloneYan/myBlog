@@ -27,15 +27,15 @@ export default () => {
           </span>
         </div>
         <div className={style.myText}>
-          <a href="/app/mark">
+          <a href="/mark">
             <p className={style.myTextNum}>10</p>
             <p className={style.myTextTitle}>文档</p>
           </a>
-          <a href="/app/book">
+          <a href="/book">
             <p className={style.myTextNum}>4</p>
             <p className={style.myTextTitle}>书单</p>
           </a>
-          <a href="/app">
+          <a href="/">
             <p className={style.myTextNum}>123920</p>
             <p className={style.myTextTitle}>浏览</p>
           </a>

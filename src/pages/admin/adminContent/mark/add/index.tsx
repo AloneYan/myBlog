@@ -70,11 +70,17 @@ export default (props: any) => {
 
   const ExportForm = createForm()(((prop: any) => {
     const { getFieldDecorator, setFieldsValue } = prop.form;
-    //发布
+    //发布/更新
     const onFinish = async () => {
       if (fwbCont !== "") {
-        const param = { ...prop.form.getFieldsValue(), content: fwbCont };
-        const res = await markApi.saveMark(param);
+        const param = {
+          ...prop.form.getFieldsValue(),
+          content: fwbCont,
+          id: props.location.state,
+        };
+        const res = await (props.location.state
+          ? markApi.updateMark(param)
+          : markApi.saveMark(param));
         if (res.data.status === 200) {
           message.success("发布成功");
           addReturn();

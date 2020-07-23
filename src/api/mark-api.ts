@@ -12,6 +12,10 @@ export default {
   saveMark(param: object) {
     return axios.post("/blog", param);
   },
+  //更新文档
+  updateMark(param: object) {
+    return axios.put("/blog", param);
+  },
   //获取文档列表
   getMarkList() {
     return axios.get("/blog/list");
