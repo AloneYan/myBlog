@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "braft-editor/dist/index.css";
 import BraftEditor from "braft-editor";
-import { Button } from "antd";
 
 import style from "./style.less";
 

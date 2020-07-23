@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Breadcrumb, message } from "antd";
+import { Breadcrumb } from "antd";
 import { HomeOutlined } from "@ant-design/icons";
 import moment from "moment";
+import marked from "marked";
+import hljs from "highlight.js";
 
 import IconFont from "@components/myIconfont";
 import Footer from "@components/contentFooter";
@@ -11,6 +13,7 @@ import style from "./style.less";
 
 export default (props: any) => {
   const [markContent, setContent] = useState<any>([]);
+  const [markDown, setMarkDown] = useState("");
   useEffect(() => {
     if (props.location.state) {
       getContent(props.location.state);
@@ -23,18 +26,23 @@ export default (props: any) => {
     };
     const res = await markApi.getMark(params);
     setContent(res.data.data);
+    setMarkDown(marked(res.data.data.content));
   };
   //提交评论
-  const onSubmit = async (msg: string, callBack: Function) => {
-    // const res = await writeApi.saveWrite({
-    //   msg: msg,
-    // });
-    // if (res.data.status === 200) {
-    //   message.success("评论成功");
-    //   getList();
-    //   callBack();
-    // }
-  };
+  const onSubmit = async (msg: string, callBack: Function) => {};
+
+  marked.setOptions({
+    highlight: function (code) {
+      return hljs.highlightAuto(code).value;
+    },
+    pedantic: false,
+    gfm: true,
+    breaks: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false,
+    xhtml: false,
+  });
 
   return (
     <div className={style.content}>
@@ -68,7 +76,7 @@ export default (props: any) => {
       </div>
       <div
         className={style.contentCont}
-        dangerouslySetInnerHTML={{ __html: markContent.content }}
+        dangerouslySetInnerHTML={{ __html: markDown }}
       ></div>
       <Footer />
       <MyComment onSubmit={onSubmit} />

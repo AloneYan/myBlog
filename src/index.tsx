@@ -4,6 +4,8 @@ import { Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import "antd/dist/antd.css";
+import "easymde/dist/easymde.min.css";
+import "highlight.js/styles/tomorrow.css";
 import "./index.css";
 import "./util/main";
 import history from "@util/history";

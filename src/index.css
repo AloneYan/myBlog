@@ -75,3 +75,16 @@ body {
 .media-wrap.image-wrap {
   overflow: auto;
 }
+blockquote {
+  margin-bottom: 15px;
+  margin-left: 1em;
+  padding: 3px 0 3px 10px;
+  border-left: 6px solid #e889b7;
+  background-color: #f6f6f6;
+  font-weight: 300;
+  font-size: 1.25em;
+  line-height: 2.5em;
+}
+blockquote p {
+  margin: 0;
+}

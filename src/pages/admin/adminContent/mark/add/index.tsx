@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import BaftEditor from "@components/baftEditor";
+// import marked from "marked";
 import { Form, Input, Select, Modal, Button, message, Spin } from "antd";
+import SimpleMDE from "react-simplemde-editor";
 
 import style from "./style.less";
 import Iconfont from "@components/myIconfont";
@@ -58,8 +59,8 @@ export default (props: any) => {
       setTypeList(res.data.data);
     }
   };
-  //获取富文本内容
-  const baftEditorChange = (val: string) => {
+  //获取markdown内容
+  const test = (val: any) => {
     fwbCont = val;
   };
 
@@ -120,7 +121,7 @@ export default (props: any) => {
             <Iconfont type="icon-tianjia" />
           </div>
         </div>
-        <BaftEditor change={baftEditorChange} content={res?.content} />
+        <SimpleMDE onChange={test} value={res?.content ? res.content : ""} />
         <div className={style.everyButton}>
           <Button type="primary" htmlType="submit">
             发布
