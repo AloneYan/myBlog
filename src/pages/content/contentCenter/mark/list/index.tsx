@@ -40,12 +40,10 @@ export default () => {
             <div className={style.markContent}>
               <div className={style.markContentType}>{item.type}</div>
               <div className={style.markContentName}>
+                <IconFont type="icon-tuzi_huaban" />
                 <b>{item.title}</b>
               </div>
-              <div className={style.markContentAuthor}>
-                <IconFont type="icon-zuozhe1" />
-                @兔纸
-              </div>
+              <div className={style.markContentAuthor}>@兔纸</div>
               <p className={style.markContentCont}>{item.des}</p>
             </div>
             <ListFooter

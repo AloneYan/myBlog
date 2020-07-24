@@ -20,6 +20,7 @@ export default () => {
     <div className={`card ${style.every}`}>
       {list.map((item: any) => (
         <div className={style.everyList} key={item.id}>
+          <div className={style.delet}>删除</div>
           <div className={style.everyName}>
             <div className={style.everyNameLeft}>
               <img src={item.headImg} alt="头像" />
