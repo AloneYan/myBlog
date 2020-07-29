@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { List } from "antd";
+import { List, Pagination } from "antd";
 import moment from "moment";
 
 import style from "./style.less";
@@ -57,6 +57,7 @@ export default () => {
           </div>
         )}
       ></List>
+      <Pagination size="small" total={50} />
     </>
   );
 };

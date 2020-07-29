@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import "antd/dist/antd.css";
 import "easymde/dist/easymde.min.css";
 import "highlight.js/styles/tomorrow.css";
-import "./index.css";
+import "./index.less";
 import "./util/main";
 import history from "@util/history";
 import store from "./redux/index";
