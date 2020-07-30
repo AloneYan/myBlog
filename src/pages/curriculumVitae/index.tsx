@@ -3,7 +3,7 @@ import { Progress, Row, Col, Divider } from "antd";
 
 import { progressColor } from "./model";
 import IconFont from "@components/myIconfont";
-import style from "./style.less";
+import style from "./style.module.less";
 
 export default () => {
   return (

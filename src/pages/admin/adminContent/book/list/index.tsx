@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Table, Button, message, Modal } from "antd";
 import moment from "moment";
 
-import style from "./style.less";
+import style from "./style.module.less";
 import history from "@util/history";
 import bookApi from "@api/book-api";
 

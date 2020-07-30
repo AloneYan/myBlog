@@ -5,8 +5,8 @@ import moment from "moment";
 import history from "./history";
 import qs from "qs";
 
-//axios.defaults.baseURL = "https://api.han96.com";
-axios.defaults.baseURL = "http://localhost:7777";
+axios.defaults.baseURL = "https://api.han96.com";
+//axios.defaults.baseURL = "http://localhost:7777";
 
 // 请求拦截
 axios.interceptors.request.use(

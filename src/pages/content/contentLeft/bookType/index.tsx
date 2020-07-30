@@ -1,21 +1,21 @@
 import React from "react";
 
 import IconFont from "@components/myIconfont";
-import style from "./style.less";
+import style from "./style.module.less";
 
 const data = [
   {
     name: "时间效率和自律",
-    num: 0
+    num: 0,
   },
   {
     name: "国产小说",
-    num: 12
+    num: 12,
   },
   {
     name: "程序媛养成计划",
-    num: 2
-  }
+    num: 2,
+  },
 ];
 
 export default () => {
@@ -26,7 +26,7 @@ export default () => {
         书单分类
       </div>
       <div className={style.typeList}>
-        {data.map(item => (
+        {data.map((item) => (
           <div key={item.name}>
             <IconFont type="icon-shu1" />
             {item.name}

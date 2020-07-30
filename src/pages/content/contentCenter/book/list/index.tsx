@@ -5,7 +5,7 @@ import cs from "classnames";
 
 import ListFooter from "@components/listFooter";
 import IconFont from "@components/myIconfont";
-import style from "./style.less";
+import style from "./style.module.less";
 import history from "@util/history";
 import bookApi from "@api/book-api";
 

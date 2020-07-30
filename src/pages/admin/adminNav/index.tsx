@@ -2,7 +2,7 @@ import React from "react";
 import { Menu } from "antd";
 import { Link, withRouter } from "react-router-dom";
 
-import style from "./style.less";
+import style from "./style.module.less";
 import IconFont from "@components/myIconfont";
 
 const Nav = (props: any) => {

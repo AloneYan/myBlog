@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Input } from "antd";
 
 import headerImg from "@assets/images/header.jpeg";
-import style from "./style.less";
+import style from "./style.module.less";
 
 export default (props: any) => {
   const [msg, setMsg] = useState<string>();

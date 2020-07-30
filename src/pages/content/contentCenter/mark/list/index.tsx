@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { List, Pagination } from "antd";
 import moment from "moment";
 
-import style from "./style.less";
+import style from "./style.module.less";
 import ListFooter from "@components/listFooter";
 import IconFont from "@components/myIconfont";
 import history from "@util/history";

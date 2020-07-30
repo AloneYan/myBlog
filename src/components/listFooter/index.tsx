@@ -1,7 +1,7 @@
 import React from "react";
 import cs from "classnames";
 
-import style from "./style.less";
+import style from "./style.module.less";
 import IconFont from "@components/myIconfont";
 
 export default (props: ListFooter) => {

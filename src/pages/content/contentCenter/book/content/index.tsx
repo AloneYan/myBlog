@@ -7,7 +7,7 @@ import IconFont from "@components/myIconfont";
 import Footer from "@components/contentFooter";
 import MyComment from "@components/comment";
 import bookApi from "@api/book-api";
-import style from "./style.less";
+import style from "./style.module.less";
 
 export default (props: any) => {
   const [markContent, setContent] = useState<any>([]);

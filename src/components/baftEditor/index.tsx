@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "braft-editor/dist/index.css";
 import BraftEditor from "braft-editor";
 
-import style from "./style.less";
+import style from "./style.module.less";
 
 export default (props: any) => {
   const colors = [

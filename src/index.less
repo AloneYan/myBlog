@@ -1,60 +1,54 @@
-@primary-color: #e889b7; // 全局主色
-@link-color: #e889b7; // 链接色
+@primary-color: #e889b7;
+* {
+  font-family: "Microsoft Yahei", sans-serif;
+  cursor: url("~@assets/images/coco.cur"), auto;
+}
+body {
+  color: #364f6b;
+  font-size: 14px;
+  min-width: 1280px;
+}
+.content {
+  width: 1280px;
+  margin: 10px auto;
+}
+.contentLeft {
+  padding-right: 14px;
+}
+/* 卡片 */
+.card {
+  background-color: #ffffff;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(26, 26, 26, 0.1);
+}
+/* 其他 */
+.media-wrap.image-wrap {
+  overflow: auto;
+}
+blockquote {
+  margin-bottom: 15px;
+  margin-left: 1em;
+  padding: 3px 0 3px 10px;
+  border-left: 6px solid #e889b7;
+  background-color: #f6f6f6;
+  font-weight: 300;
+  font-size: 1.25em;
+  line-height: 2.5em;
+}
+blockquote p {
+  margin: 0;
+}
+/* 清浮动 */
+.clearfix_after {
+  zoom: 1;
+}
 
-/* content */
-:global {
-  @primary-color: #e889b7;
-  * {
-    font-family: "Microsoft Yahei", sans-serif;
-    cursor: url("~@assets/images/coco.cur"), auto;
-  }
-  body {
-    color: #364f6b;
-    font-size: 14px;
-    min-width: 1280px;
-  }
-  .content {
-    width: 1280px;
-    margin: 10px auto;
-  }
-  .contentLeft {
-    padding-right: 14px;
-  }
-  /* 卡片 */
-  .card {
-    background-color: #ffffff;
-    margin-bottom: 14px;
-    border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(26, 26, 26, 0.1);
-  }
-  /* 其他 */
-  .media-wrap.image-wrap {
-    overflow: auto;
-  }
-  blockquote {
-    margin-bottom: 15px;
-    margin-left: 1em;
-    padding: 3px 0 3px 10px;
-    border-left: 6px solid #e889b7;
-    background-color: #f6f6f6;
-    font-weight: 300;
-    font-size: 1.25em;
-    line-height: 2.5em;
-  }
-  blockquote p {
-    margin: 0;
-  }
-  /* 清浮动 */
-  .clearfix_after {
-    zoom: 1;
-  }
-
-  .clearfix_after:after {
-    content: "";
-    display: block;
-    height: 0;
-    line-height: 0;
-    clear: both;
-    visibility: hidden;
-  }
+.clearfix_after:after {
+  content: "";
+  display: block;
+  height: 0;
+  line-height: 0;
+  clear: both;
+  visibility: hidden;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./style.less";
+import style from "./style.module.less";
 import history from "@util/history";
 import IconFont from "@components/myIconfont";
 

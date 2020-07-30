@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 
-import style from "./style.less";
+import style from "./style.module.less";
 import dImg from "@assets/images/d-header.png";
 import yImg from "@assets/images/y-header.png";
 import IconFont from "@components/myIconfont";

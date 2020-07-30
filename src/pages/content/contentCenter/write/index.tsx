@@ -4,7 +4,7 @@ import moment from "moment";
 
 import writeApi from "@api/write-api";
 import MyComment from "@components/comment";
-import style from "./style.less";
+import style from "./style.module.less";
 
 export default () => {
   const [list, setList] = useState<Array<object>>();

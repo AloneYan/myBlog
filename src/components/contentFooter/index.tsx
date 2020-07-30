@@ -1,7 +1,7 @@
 import React from "react";
 
 import IconFont from "@components/myIconfont";
-import style from "./style.less";
+import style from "./style.module.less";
 
 export default (props: any) => {
   return (

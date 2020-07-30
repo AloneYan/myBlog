@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Input, Button, message } from "antd";
 import { connect } from "react-redux";
 
-import style from "./style.less";
+import style from "./style.module.less";
 import userApi from "@api/user-api";
 import IconFont from "@components/myIconfont";
 import history from "@util/history";

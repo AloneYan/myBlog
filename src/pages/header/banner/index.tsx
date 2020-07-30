@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Tooltip } from "antd";
 
 import Iconfont from "@components/myIconfont";
-import style from "./style.less";
+import style from "./style.module.less";
 
 export default () => {
   const [user, setUser] = useState<User>();

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 
-import style from "./style.less";
+import style from "./style.module.less";
 import IconFont from "@components/myIconfont";
 import everyApi from "@api/every-api";
 

@@ -4,7 +4,7 @@ import { Row, Col, message, Button } from "antd";
 import BaftEditor from "@components/baftEditor";
 import everyApi from "@api/every-api";
 import history from "@util/history";
-import style from "./style.less";
+import style from "./style.module.less";
 
 export default () => {
   let fwbCont = "";

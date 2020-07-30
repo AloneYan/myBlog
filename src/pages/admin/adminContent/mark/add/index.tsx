@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Input, Select, Modal, Button, message, Spin } from "antd";
 import SimpleMDE from "react-simplemde-editor";
 
-import style from "./style.less";
+import style from "./style.module.less";
 import Iconfont from "@components/myIconfont";
 import history from "@util/history";
 import markApi from "@api/mark-api";
