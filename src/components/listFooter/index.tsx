@@ -27,7 +27,9 @@ export default (props: ListFooter) => {
       </span>
       <span className={cs(style.footerCont, style.footerContRight)}>
         查看全文
-        <IconFont type="icon-gengduo" />
+        <span className={style.myIconfont}>
+          <IconFont type="icon-gengduo" />
+        </span>
       </span>
     </div>
   );

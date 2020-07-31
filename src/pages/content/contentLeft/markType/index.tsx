@@ -26,13 +26,17 @@ export default () => {
   return (
     <div className="card">
       <div className={style.typeHeader}>
-        <IconFont type="icon-leimupinleifenleileibie" />
+        <span className={style.myIconfont}>
+          <IconFont type="icon-leimupinleifenleileibie" />
+        </span>
         文档分类
       </div>
       <div className={style.typeList}>
         {data.map((item) => (
           <div key={item.name}>
-            <IconFont type="icon-wenjianjia" />
+            <span className={style.myIconfont}>
+              <IconFont type="icon-wenjianjia" />
+            </span>
             {item.name}
             <span>（{item.num}）</span>
           </div>

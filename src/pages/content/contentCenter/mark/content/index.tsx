@@ -59,10 +59,7 @@ export default (props: any) => {
       </div>
       <div className={style.contentHeader}>
         {markContent.title}
-        <span>
-          <IconFont type="icon-zuozhe1" />
-          @兔纸
-        </span>
+        <span>@兔纸</span>
         <div className={style.contentOther}>
           <span>
             <IconFont type="icon-riqi" />

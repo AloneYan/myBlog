@@ -40,7 +40,7 @@ export default () => {
         renderItem={(item: any) => (
           <li>
             <Comment
-              author={<span>{item.name}</span>}
+              author={<span>@{item.name}</span>}
               avatar={<Avatar src={item.headImg} alt={item.name} />}
               content={<p>{item.msg}</p>}
               datetime={<span>{moment(item.createTime).fromNow()}</span>}

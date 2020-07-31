@@ -20,34 +20,29 @@
         .ant-comment-content {
           font-size: 16px;
         }
-        .ant-comment-content-author-time span {
-          font-size: 12px;
-        }
       }
       .ant-comment-nested {
         .ant-comment-content {
           font-size: 14px;
         }
-        .ant-comment-content-author-time span {
-          font-size: 12px;
-        }
       }
       .ant-comment-content {
         padding-left: 10px;
         .ant-comment-content-detail {
+          margin-top: 20px;
           p {
-            color: rgba(0, 0, 0, 0.65);
+            color: @text-color-secondary;
           }
         }
       }
-      .ant-comment-content-author-name {
-        span {
-          color: #364f6b;
-        }
+      .ant-comment-content-author-name > span {
+        color: @primary-color;
+        font-size: 16px;
+        font-weight: bold;
       }
-      .ant-comment-content-author > span,
-      .ant-comment-content-author > a {
-        font-size: 14px;
+      .ant-comment-content-author-time > span {
+        color: @text-color-secondary;
+        margin-left: 30px;
       }
       .ant-avatar,
       .ant-comment-avatar img {

@@ -23,7 +23,7 @@ export default () => {
               src="https://dshvv.oss-cn-beijing.aliyuncs.com/yh/1.jpg"
               alt="头像"
             />
-            <span>@兔纸</span>
+            <span className={style.myName}>@兔纸</span>
           </span>
         </div>
         <div className={style.myText}>

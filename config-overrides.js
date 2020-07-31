@@ -14,9 +14,13 @@ module.exports = override(
     javascriptEnabled: true,
     modifyVars: {
       '@primary-color': '#e889b7',
-      '@link-color': '#e889b7',
+      '@link-color': '@primary-color',
+      '@link-hover-color': '@primary-color',
+      '@link-hover-color': '@primary-color',
       '@font-size-base': '14px',
-      '@success-color': '#e889b7'
+      '@success-color': '@primary-color',
+      '@text-color': '#364f6b',
+      '@text-color-secondary': '#6a737d'
     }
   }),
   addWebpackAlias({
