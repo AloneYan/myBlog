@@ -45,7 +45,7 @@ export default (props: any) => {
   });
 
   return (
-    <div className={style.content}>
+    <div className={`card ${style.content}`}>
       <div className={style.contentBread}>
         <Breadcrumb>
           <Breadcrumb.Item href="/">

@@ -29,10 +29,10 @@ const Login = (props: any) => {
     history.push("/register");
   };
   const goApp = () => {
-    history.push("/app");
+    history.push("/");
   };
   const goForgetPass = () => {
-    history.push("/app");
+    history.push("/");
   };
 
   // 标签布局

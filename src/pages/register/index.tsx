@@ -24,7 +24,7 @@ const Register = (props: any) => {
     history.push("/login");
   };
   const goApp = () => {
-    history.push("/app");
+    history.push("/");
   };
 
   //标签布局

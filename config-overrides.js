@@ -12,7 +12,12 @@ module.exports = override(
   }),
   addLessLoader({
     javascriptEnabled: true,
-    modifyVars: {}
+    modifyVars: {
+      '@primary-color': '#e889b7',
+      '@link-color': '#e889b7',
+      '@font-size-base': '14px',
+      '@success-color': '#e889b7'
+    }
   }),
   addWebpackAlias({
     '@assets': path.resolve(__dirname, 'src/assets'),
