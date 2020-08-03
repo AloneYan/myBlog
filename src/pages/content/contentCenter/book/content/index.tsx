@@ -34,15 +34,10 @@ export default (props: any) => {
           <Breadcrumb.Item>
             <span>{markContent.type}</span>
           </Breadcrumb.Item>
-          <Breadcrumb.Item>{markContent.title}</Breadcrumb.Item>
+          <Breadcrumb.Item>{markContent.name}</Breadcrumb.Item>
         </Breadcrumb>
       </div>
       <div className={style.contentHeader}>
-        {markContent.title}
-        <span>
-          <IconFont type="icon-zuozhe" />
-          @兔纸
-        </span>
         <div className={style.contentOther}>
           <span>
             <IconFont type="icon-riqi" />
@@ -54,6 +49,7 @@ export default (props: any) => {
           </span>
         </div>
       </div>
+      <div className={style.contentName}>123</div>
       <div
         className={style.contentCont}
         dangerouslySetInnerHTML={{ __html: markContent.content }}

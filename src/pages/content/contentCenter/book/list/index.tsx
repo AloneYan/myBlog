@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { List, Rate } from "antd";
+import { List, Rate, Row, Col } from "antd";
 import moment from "moment";
 import cs from "classnames";
 
@@ -11,6 +11,7 @@ import api from "@api/api-ins";
 
 export default () => {
   const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     getList();
   }, []);
@@ -19,6 +20,7 @@ export default () => {
     const res: any = await api.book.list.req();
     if (res.status === 200) {
       setList(res.data);
+      setLoading(false);
     }
   };
   //跳转书单详情
@@ -32,6 +34,7 @@ export default () => {
     <>
       <List
         dataSource={list}
+        loading={loading}
         renderItem={(item: any) => (
           <div
             className={cs("card", style.book, "clearfix")}
@@ -39,29 +42,28 @@ export default () => {
               goContent(item.id);
             }}
           >
-            <div className={`${style.bookImg}`}>
-              <img src={item.bookImg} alt="封面" />
-            </div>
-            <ul className={style.bookCont}>
-              <li className={style.bookContName}>
-                <span>书名：</span>
-                {item.name}
-              </li>
-              <li className={style.bookContAuthor}>
-                <span>作者：</span>
-                {item.author}
-              </li>
-              <li className={style.bookContAuthor}>
-                <span>
-                  <span>推荐：</span>
+            <Row>
+              <Col span={10}>
+                <div className={style.bookImg}>
+                  <img src={item.bookImg} alt="封面" />
+                  <div className={style.bookName}>
+                    <div className={style.name}>《{item.name}》</div>
+                    <div>—— {item.author}</div>
+                  </div>
+                </div>
+              </Col>
+              <Col span={14}>
+                <div className={style.bookContent}>
                   <Rate
                     disabled
                     defaultValue={item.star}
-                    character={<IconFont type="icon-tuzi1" />}
+                    className={style.star}
+                    character={<IconFont type="icon-xingshi" />}
                   />
-                </span>
-              </li>
-            </ul>
+                  <div className={style.content}>{item.des}</div>
+                </div>
+              </Col>
+            </Row>
             <ListFooter
               {...{
                 time: moment(item.createTime).format("YYYY-MM-DD"),

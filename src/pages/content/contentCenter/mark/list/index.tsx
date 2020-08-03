@@ -10,6 +10,7 @@ import api from "@api/api-ins";
 
 export default () => {
   const [markList, setList] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     getMarkList();
   }, []);
@@ -24,12 +25,14 @@ export default () => {
     const res: any = await api.blog.list.req();
     if (res.status === 200) {
       setList(res.data);
+      setLoading(false);
     }
   };
   return (
     <>
       <List
         dataSource={markList}
+        loading={loading}
         renderItem={(item: any) => (
           <div
             className={`card ${style.mark}`}
@@ -57,7 +60,9 @@ export default () => {
           </div>
         )}
       ></List>
-      <Pagination size="small" total={50} />
+      <div className={style.pagination}>
+        <Pagination total={50} defaultCurrent={5} />
+      </div>
     </>
   );
 };

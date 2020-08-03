@@ -31,7 +31,7 @@ export default () => {
                 <Iconfont type="icon-tuichu1" />
               </span>
             </Tooltip>
-            <b>hi！@{user.name}</b>
+            <b>hi！@{user.name} ,好久不见～</b>
           </div>
         )}
       </div>

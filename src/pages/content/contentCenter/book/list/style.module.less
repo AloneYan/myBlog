@@ -1,29 +1,46 @@
 .book {
   width: 100%;
   .bookImg {
-    float: left;
-    width: 240px;
-    height: 145px;
     overflow: hidden;
+    position: relative;
+    height: 180px;
+    border-radius: 10px;
     margin: 20px;
     img {
-      width: 240px;
-      height: 145px;
+      width: 100%;
+      height: auto;
       border: 1px solid #f3f3f3;
       padding: 2px;
     }
-  }
-  .bookCont {
-    margin: 19px;
-    padding-left: 250px;
-    font-size: 16px;
-    .bookContName span,
-    .bookContAuthor span {
-      font-size: 16px;
-      padding-right: 5px;
-      span {
-        padding-right: 5px;
+    .bookName {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(225, 225, 225, 0.3);
+      padding: 30px;
+      padding-top: 100px;
+      div {
+        line-height: 30px;
+        text-align: right;
       }
+      .name {
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+  }
+  .bookContent {
+    padding: 20px;
+    .star {
+      font-size: 28px;
+      color: @primary-color;
+    }
+    .content {
+      margin-top: 20px;
+      color: @text-color-secondary;
+      font-size: 16px;
     }
   }
 }

@@ -22,24 +22,18 @@
         }
         .ant-menu {
           background-color: unset;
-          .ant-menu-item {
-            text-align: center;
-            font-size: 18px;
-            border: none;
-            padding-right: 80px;
-            padding-left: 0;
-          }
+          .ant-menu-item,
           .ant-menu-item:hover {
             border: none;
+            padding: 0;
+            width: 160px;
+            font-weight: bold;
           }
           .ant-menu-item-selected,
           .ant-menu-item-active {
-            border-bottom: none;
-            font-size: 20px;
-            font-weight: bold;
-            padding-right: 80px;
-            padding-left: 0;
-            text-align: left;
+            a {
+              font-size: 16px;
+            }
           }
         }
       }
