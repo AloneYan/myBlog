@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import BaftEditor from "@components/baftEditor";
 import { Form, Input, Select, Modal, Button, Spin, message } from "antd";
 
-import style from "./style.less";
+import style from "./style.module.less";
 import Iconfont from "@components/myIconfont";
 import history from "@util/history";
-import bookApi from "@api/book-api";
+import api from "@api/api-ins";
 import { createForm } from "rc-form";
 
 interface GoMark {}
@@ -26,8 +26,8 @@ export default (props: any) => {
   }, [props]);
   //获取书单内容
   const getOne = async (id: any) => {
-    const res = await bookApi.getBook({ id: id });
-    setRes(res.data.data);
+    const res = await api.book.getOne.req({ id });
+    setRes(res.data);
     setLoading(false);
   };
   //添加书单类型对话框
@@ -39,8 +39,8 @@ export default (props: any) => {
   };
   const modalFinish = async (val: any) => {
     val.type = "book";
-    const res = await bookApi.saveMarkType(val);
-    if (res.data.status === 200) {
+    const res: any = await api.book.save.req(val);
+    if (res.status === 200) {
       message.success("保存成功");
       getTypeList();
       setVisible(false);
@@ -48,9 +48,9 @@ export default (props: any) => {
   };
   //获取书单类型列表
   const getTypeList = async () => {
-    const res = await bookApi.getMarkTypeList({ type: "book" });
-    if (res.data.status === 200) {
-      setTypeList(res.data.data);
+    const res: any = await api.dicts.list.req({ type: "book" });
+    if (res.status === 200) {
+      setTypeList(res.data);
     }
   };
   //获取富文本内容
@@ -67,19 +67,13 @@ export default (props: any) => {
     const onFinish = async () => {
       if (fwbCont !== "") {
         const param = { ...prop.form.getFieldsValue(), content: fwbCont };
-        if (!props.location.state) {
-          const res = await bookApi.saveBook(param);
-          if (res.data.status === 200) {
-            message.success("发布成功");
-            addReturn();
-          }
-        } else {
-          param.id = props.location.state;
-          const res = await bookApi.updateBook(param);
-          if (res.data.status === 200) {
-            message.success("修改成功");
-            addReturn();
-          }
+        param.id = props.location.state;
+        const res: any = await (props.location.state
+          ? api.book.update.req(param)
+          : api.book.save.req(param));
+        if (res.status === 200) {
+          message.success("发布成功");
+          addReturn();
         }
       }
     };
@@ -87,7 +81,7 @@ export default (props: any) => {
       <Form onFinish={onFinish}>
         <Form.Item label="书单名称">
           {getFieldDecorator("name", {
-            initialValue: res?.bookName ? res.bookName : "",
+            initialValue: res?.name ? res.name : "",
             rules: [
               {
                 required: true,
@@ -99,7 +93,7 @@ export default (props: any) => {
         </Form.Item>
         <Form.Item label="书单作者">
           {getFieldDecorator("author", {
-            initialValue: res?.bookAuthor ? res.bookAuthor : "",
+            initialValue: res?.author ? res.author : "",
             rules: [
               {
                 required: true,
@@ -111,7 +105,7 @@ export default (props: any) => {
         </Form.Item>
         <Form.Item label="推荐指数">
           {getFieldDecorator("star", {
-            initialValue: res?.bookStar ? res.bookStar : "",
+            initialValue: res?.star ? res.star : "",
             rules: [
               {
                 required: true,
@@ -124,7 +118,7 @@ export default (props: any) => {
         <div className={style.addIcontNext}>
           <Form.Item label="书单类型">
             {getFieldDecorator("type", {
-              initialValue: res?.type ? res.type : "",
+              initialValue: res?.type ? Number(res.type) : "",
               rules: [{ required: true, message: "请选择书单类型" }],
             })(
               <Select placeholder="请选择书单类型">

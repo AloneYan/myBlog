@@ -54,6 +54,14 @@ export default {
       method: 'PUT',
       isFormData: true
     },
+    remove: {
+      url: '/book',
+      method: 'DELETE',
+      isFormData: true,
+      requestData(id: number) {
+        return this.r({id});
+      }
+    },
     list: {
       url: '/book/list',
       method: 'GET'

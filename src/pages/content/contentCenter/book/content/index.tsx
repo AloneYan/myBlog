@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Breadcrumb, message } from "antd";
+import { Breadcrumb } from "antd";
 import { HomeOutlined } from "@ant-design/icons";
 import moment from "moment";
 
 import IconFont from "@components/myIconfont";
 import Footer from "@components/contentFooter";
 import MyComment from "@components/comment";
-import bookApi from "@api/book-api";
+import api from "@api/api-ins";
 import style from "./style.module.less";
 
 export default (props: any) => {
@@ -17,12 +17,9 @@ export default (props: any) => {
     } else {
     }
   }, [props]);
-  const getContent = async (id: string | number) => {
-    const params = {
-      id: id,
-    };
-    const res = await bookApi.getBook(params);
-    setContent(res.data.data);
+  const getContent = async (id: number) => {
+    const res = await api.book.getOne.req({ id });
+    setContent(res.data);
   };
   //提交评论
   const onSubmit = async (msg: string, callBack: Function) => {};

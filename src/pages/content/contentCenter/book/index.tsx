@@ -7,8 +7,8 @@ import Content from "./content";
 export default () => {
   return (
     <Switch>
-      <Route exact path="/" component={List} />
-      <Route exact path="/content" component={Content} />
+      <Route exact path="/book" component={List} />
+      <Route exact path="/book/content" component={Content} />
     </Switch>
   );
 };

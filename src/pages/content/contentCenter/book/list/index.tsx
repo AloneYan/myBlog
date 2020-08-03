@@ -7,7 +7,7 @@ import ListFooter from "@components/listFooter";
 import IconFont from "@components/myIconfont";
 import style from "./style.module.less";
 import history from "@util/history";
-import bookApi from "@api/book-api";
+import api from "@api/api-ins";
 
 export default () => {
   const [list, setList] = useState([]);
@@ -16,15 +16,15 @@ export default () => {
   }, []);
   //获取书单列表
   const getList = async () => {
-    const res = await bookApi.getList();
-    if (res.data.status === 200) {
-      setList(res.data.data);
+    const res: any = await api.book.list.req();
+    if (res.status === 200) {
+      setList(res.data);
     }
   };
   //跳转书单详情
-  const goContent = (id: string | number) => {
+  const goContent = (id: number) => {
     history.push({
-      pathname: "/content",
+      pathname: "/book/content",
       state: id,
     });
   };

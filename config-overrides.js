@@ -13,7 +13,7 @@ module.exports = override(
   addLessLoader({
     javascriptEnabled: true,
     modifyVars: {
-      '@primary-color': '#e889b7',
+      '@primary-color': '#F3780b',
       '@link-color': '@primary-color',
       '@link-hover-color': '@primary-color',
       '@link-hover-color': '@primary-color',

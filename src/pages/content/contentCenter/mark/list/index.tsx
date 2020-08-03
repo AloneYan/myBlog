@@ -6,7 +6,7 @@ import style from "./style.module.less";
 import ListFooter from "@components/listFooter";
 import IconFont from "@components/myIconfont";
 import history from "@util/history";
-import markApi from "@api/mark-api";
+import api from "@api/api-ins";
 
 export default () => {
   const [markList, setList] = useState([]);
@@ -21,9 +21,9 @@ export default () => {
   };
   //获取文档列表
   const getMarkList = async () => {
-    const res = await markApi.getMarkList();
-    if (res.data.status === 200) {
-      setList(res.data.data);
+    const res: any = await api.blog.list.req();
+    if (res.status === 200) {
+      setList(res.data);
     }
   };
   return (

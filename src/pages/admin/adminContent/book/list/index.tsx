@@ -4,22 +4,22 @@ import moment from "moment";
 
 import style from "./style.module.less";
 import history from "@util/history";
-import bookApi from "@api/book-api";
+import api from "@api/api-ins";
 
 export default () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
-  const [bookId, setBookId] = useState<string | number>("");
+  const [bookId, setBookId] = useState<number>();
   useEffect(() => {
     getList();
   }, []);
   //获取书单列表
   const getList = async () => {
     setLoading(true);
-    const res = await bookApi.getList();
-    if (res.data.status === 200) {
-      setData(res.data.data);
+    const res: any = await api.book.list.req();
+    if (res.status === 200) {
+      setData(res.data);
     }
     setLoading(false);
   };
@@ -34,21 +34,21 @@ export default () => {
     history.push("/admin/book/add");
   };
   //编辑书单
-  const editBook = (id: string | number) => {
+  const editBook = (id: number) => {
     history.push({
       pathname: "/admin/book/add",
       state: id,
     });
   };
   //删除书单
-  const deleteBook = (id: string | number) => {
+  const deleteBook = (id: number) => {
     setVisible(true);
     setBookId(id);
   };
   //确定删除书单
   const handleOk = async () => {
-    const res = await bookApi.rmBook({ id: bookId });
-    if (res.data.status === 200) {
+    const res: any = await api.book.remove.req({ id: bookId });
+    if (res.status === 200) {
       setVisible(false);
       message.success("删除成功");
       getList();
@@ -133,6 +133,7 @@ export default () => {
       </div>
       <div className={style.bookList}>
         <Table
+          rowKey={(record: any) => record.id}
           rowSelection={{
             type: "checkbox",
             ...rowSelection,

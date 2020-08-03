@@ -126,6 +126,15 @@ export interface BookAPI<T>  {
     type?: string
   }>;
   /**
+   * 书单删除接口
+   */
+  remove: NumberIdAPI<T, any, {
+    /**
+     * id
+     */
+    id?: number
+  }>;
+  /**
    * 书单列表接口
    */
   list: GenericAPI<T, any, undefined>;
