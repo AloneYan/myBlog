@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 
 import style from "./style.module.less";
 import { setPreRoter } from "../../redux";
-import userApi from "@api/user-api";
+import api from "@api/api-ins";
 import IconFont from "@components/myIconfont";
 import history from "@util/history";
 
 const Register = (props: any) => {
   const onFinish = async (values: any) => {
-    const res = await userApi.addUser(values);
-    if (res.data.status === 200) {
+    const res: any = await api.register.req(values);
+    if (res.status === 200) {
       //把本层路由地址放到redux的preRoter中
       props.setPreRoter("register");
       message.success("注册成功");

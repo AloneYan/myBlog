@@ -2,15 +2,15 @@ import React from "react";
 import { Row, Col, message, Button } from "antd";
 
 import BaftEditor from "@components/baftEditor";
-import everyApi from "@api/every-api";
+import api from "@api/api-ins";
 import history from "@util/history";
 import style from "./style.module.less";
 
 export default () => {
   let fwbCont = "";
   const saveEvery = async () => {
-    const res = await everyApi.saveEvery({ msg: fwbCont });
-    if (res.data.status === 200) {
+    const res: any = await api.mood.save.req({ msg: fwbCont });
+    if (res.status === 200) {
       message.success("发布成功");
       history.push("/every");
     }

@@ -3,18 +3,17 @@ import { Form, Input, Button, message } from "antd";
 import { connect } from "react-redux";
 
 import style from "./style.module.less";
-import userApi from "@api/user-api";
+import api from "@api/api-ins";
 import IconFont from "@components/myIconfont";
 import history from "@util/history";
 
 const Login = (props: any) => {
   const onFinish = async (values: any) => {
-    console.log(values);
-    const res = await userApi.getUser(values);
-    if (res.data.status === 200) {
+    const res: any = await api.login.Login.req(values);
+    if (res.status === 200) {
       //保存token和用户信息到浏览器缓存中
-      localStorage.setItem("token", res.data.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.data.user));
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
       message.success("登录成功");
       //如果从注册页跳转回来 就跳回主页面，否则跳回上一层
       if (props.preRoter === "register") {

@@ -6,7 +6,7 @@ import SimpleMDE from "react-simplemde-editor";
 import style from "./style.module.less";
 import Iconfont from "@components/myIconfont";
 import history from "@util/history";
-import markApi from "@api/mark-api";
+import api from "@api/api-ins";
 import { createForm } from "rc-form";
 
 interface GoMark {}
@@ -27,12 +27,9 @@ export default (props: any) => {
     }
   }, [props]);
 
-  const getOne = async (id: any) => {
-    const params = {
-      id: id,
-    };
-    const res = await markApi.getMark(params);
-    setRes(res.data.data);
+  const getOne = async (id: number) => {
+    const res: any = await api.blog.getOne.req({ id });
+    setRes(res.data);
     setLoading(false);
   };
 
@@ -45,8 +42,8 @@ export default (props: any) => {
   };
   const modalFinish = async (val: any) => {
     val.type = "mark";
-    const res = await markApi.saveMarkType(val);
-    if (res.data.status === 200) {
+    const res: any = await api.dicts.save.req(val);
+    if (res.status === 200) {
       message.success("保存成功");
       getTypeList();
       setVisible(false);
@@ -54,9 +51,9 @@ export default (props: any) => {
   };
   //获取文档类型列表
   const getTypeList = async () => {
-    const res = await markApi.getMarkTypeList({ type: "mark" });
-    if (res.data.status === 200) {
-      setTypeList(res.data.data);
+    const res: any = await api.dicts.list.req({ type: "mark" });
+    if (res.status === 200) {
+      setTypeList(res.data);
     }
   };
   //获取markdown内容
@@ -79,10 +76,10 @@ export default (props: any) => {
           content: fwbCont,
           id: props.location.state,
         };
-        const res = await (props.location.state
-          ? markApi.updateMark(param)
-          : markApi.saveMark(param));
-        if (res.data.status === 200) {
+        const res: any = await (props.location.state
+          ? api.blog.update.req(param)
+          : api.blog.save.req(param));
+        if (res.status === 200) {
           message.success("发布成功");
           addReturn();
         }

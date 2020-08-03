@@ -8,7 +8,7 @@ import hljs from "highlight.js";
 import IconFont from "@components/myIconfont";
 import Footer from "@components/contentFooter";
 import MyComment from "@components/comment";
-import markApi from "@api/mark-api";
+import api from "@api/api-ins";
 import style from "./style.module.less";
 
 export default (props: any) => {
@@ -20,13 +20,10 @@ export default (props: any) => {
     } else {
     }
   }, [props]);
-  const getContent = async (id: string | number) => {
-    const params = {
-      id: id,
-    };
-    const res = await markApi.getMark(params);
-    setContent(res.data.data);
-    setMarkDown(marked(res.data.data.content));
+  const getContent = async (id: number) => {
+    const res: any = await api.blog.getOne.req({ id });
+    setContent(res.data);
+    setMarkDown(marked(res.data.content));
   };
   //提交评论
   const onSubmit = async (msg: string, callBack: Function) => {};

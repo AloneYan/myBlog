@@ -4,13 +4,13 @@ import moment from "moment";
 
 import style from "./style.module.less";
 import history from "@util/history";
-import markApi from "@api/mark-api";
+import api from "@api/api-ins";
 
 export default () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
-  const [markId, setMarkId] = useState<string | number>("");
+  const [markId, setMarkId] = useState<number>();
 
   useEffect(() => {
     getList();
@@ -18,9 +18,9 @@ export default () => {
   //获取文档列表
   const getList = async () => {
     setLoading(true);
-    const res = await markApi.getMarkList();
-    if (res.data.status === 200) {
-      setData(res.data.data);
+    const res: any = await api.blog.list.req();
+    if (res.status === 200) {
+      setData(res.data);
     }
     setLoading(false);
   };
@@ -35,20 +35,20 @@ export default () => {
     history.push("/admin/mark/add");
   };
   //编辑文档
-  const editMark = (id: string | number) => {
+  const editMark = (id: number) => {
     history.push({
       pathname: "/admin/mark/add",
       state: id,
     });
   };
   //删除文档
-  const deleteMark = (id: string | number) => {
+  const deleteMark = (id: number) => {
     setVisible(true);
     setMarkId(id);
   };
   //确定删除文档
   const handleOk = async () => {
-    const res = await markApi.rmMark({ id: markId });
+    const res = await api.blog.remove.req({ id: markId });
     if (res.data.status === 200) {
       setVisible(false);
       message.success("删除成功");

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Comment, Avatar, List, message } from "antd";
 import moment from "moment";
 
-import writeApi from "@api/write-api";
+import api from "@api/api-ins";
 import MyComment from "@components/comment";
 import style from "./style.module.less";
 
@@ -15,10 +15,8 @@ export default () => {
 
   //提交评论
   const onSubmit = async (msg: string, callBack: Function) => {
-    const res = await writeApi.saveWrite({
-      msg: msg,
-    });
-    if (res.data.status === 200) {
+    const res: any = await api.msgBoard.save.req({ msg: msg, token: "" });
+    if (res.status === 200) {
       message.success("评论成功");
       getList();
       callBack();
@@ -26,9 +24,9 @@ export default () => {
   };
   //获取评论列表
   const getList = async () => {
-    const res = await writeApi.getWrite();
-    if (res.data.status === 200) {
-      setList(res.data.data);
+    const res: any = await api.msgBoard.list.req();
+    if (res.status === 200) {
+      setList(res.data);
     }
   };
 

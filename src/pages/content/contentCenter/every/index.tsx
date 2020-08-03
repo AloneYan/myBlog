@@ -3,7 +3,7 @@ import moment from "moment";
 
 import style from "./style.module.less";
 import IconFont from "@components/myIconfont";
-import everyApi from "@api/every-api";
+import api from "@api/api-ins";
 
 export default () => {
   useEffect(() => {
@@ -11,9 +11,9 @@ export default () => {
   }, []);
   const [list, setList] = useState([]);
   const getList = async () => {
-    const res = await everyApi.getList();
-    if (res.data.status === 200) {
-      setList(res.data.data);
+    const res: any = await api.mood.list.req();
+    if (res.status === 200) {
+      setList(res.data);
     }
   };
   return (
