@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import BaftEditor from "@components/baftEditor";
-import { Form, Input, Select, Modal, Button, Spin, message } from "antd";
+import {
+  Form,
+  Input,
+  Select,
+  Modal,
+  Button,
+  Spin,
+  message,
+  Upload,
+} from "antd";
 
 import style from "./style.module.less";
 import Iconfont from "@components/myIconfont";
@@ -79,25 +88,25 @@ export default (props: any) => {
     };
     return (
       <Form onFinish={onFinish}>
-        <Form.Item label="书单名称">
+        <Form.Item label="名称">
           {getFieldDecorator("name", {
             initialValue: res?.name ? res.name : "",
             rules: [
               {
                 required: true,
-                message: "请填写书名",
+                message: "请填写书名/剧名",
                 validateTrigger: "onBlur",
               },
             ],
           })(<Input />)}
         </Form.Item>
-        <Form.Item label="书单作者">
+        <Form.Item label="作者">
           {getFieldDecorator("author", {
             initialValue: res?.author ? res.author : "",
             rules: [
               {
                 required: true,
-                message: "请填写书单作者",
+                message: "请填写作者",
                 validateTrigger: "onBlur",
               },
             ],
@@ -116,12 +125,12 @@ export default (props: any) => {
           })(<Input />)}
         </Form.Item>
         <div className={style.addIcontNext}>
-          <Form.Item label="书单类型">
+          <Form.Item label="类型">
             {getFieldDecorator("type", {
               initialValue: res?.type ? Number(res.type) : "",
-              rules: [{ required: true, message: "请选择书单类型" }],
+              rules: [{ required: true, message: "请选择类型" }],
             })(
-              <Select placeholder="请选择书单类型">
+              <Select placeholder="请选择类型">
                 {typeList.map((item: any) => (
                   <Select.Option key={item.id} value={item.id}>
                     {item.name}

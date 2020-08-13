@@ -12,35 +12,32 @@
       border: 1px solid #f3f3f3;
       padding: 2px;
     }
-    .bookName {
+    .star {
       position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background-color: rgba(225, 225, 225, 0.3);
-      padding: 30px;
-      padding-top: 100px;
-      div {
-        line-height: 30px;
-        text-align: right;
-      }
-      .name {
-        font-size: 18px;
-        font-weight: bold;
-      }
+      bottom: 10px;
+      left: 10px;
+      font-size: 20px;
+      color: @primary-color;
     }
   }
   .bookContent {
     padding: 20px;
-    .star {
+    .name {
       font-size: 28px;
-      color: @primary-color;
+      line-height: 50px;
+      span {
+        font-size: 14px;
+      }
     }
     .content {
       margin-top: 20px;
+      padding: 0 20px;
       color: @text-color-secondary;
       font-size: 16px;
     }
   }
+}
+.pagination {
+  margin-top: 50px;
+  text-align: center;
 }

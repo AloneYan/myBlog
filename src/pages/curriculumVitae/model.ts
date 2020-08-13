@@ -38,4 +38,19 @@ export const progressColor = [
     des:
       "这个太太太太常用了，独立完成5个以上数量的小程序，写起来速度飞快，可以接入微信支付定位即时通讯直播等等等。h5也写了好多。",
   },
+  {
+    type: "Java/PHP/node",
+    colorStar: "#fff1eb",
+    colorEnd: "#ace0f9",
+    percent: 40,
+    des:
+      "处于能看懂逻辑可以照着写过的代码写的地步，不会刻意的接触后台代码，前后台分离最好，非要我写也不是不行。",
+  },
+  {
+    type: "PS/AE/PR",
+    colorStar: "#fbc2eb",
+    colorEnd: "#a18cd1",
+    percent: 20,
+    des: "属于爱好，正在学习。",
+  },
 ];

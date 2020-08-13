@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { List, Rate, Row, Col } from "antd";
+import { List, Rate, Row, Col, Pagination } from "antd";
 import moment from "moment";
 import cs from "classnames";
 
@@ -46,20 +46,20 @@ export default () => {
               <Col span={10}>
                 <div className={style.bookImg}>
                   <img src={item.bookImg} alt="封面" />
-                  <div className={style.bookName}>
-                    <div className={style.name}>《{item.name}》</div>
-                    <div>—— {item.author}</div>
-                  </div>
-                </div>
-              </Col>
-              <Col span={14}>
-                <div className={style.bookContent}>
                   <Rate
                     disabled
                     defaultValue={item.star}
                     className={style.star}
                     character={<IconFont type="icon-xingshi" />}
                   />
+                </div>
+              </Col>
+              <Col span={14}>
+                <div className={style.bookContent}>
+                  <div className={style.name}>
+                    {item.name}
+                    <span> —— {item.author}</span>
+                  </div>
                   <div className={style.content}>{item.des}</div>
                 </div>
               </Col>
@@ -75,6 +75,9 @@ export default () => {
           </div>
         )}
       ></List>
+      <div className={style.pagination}>
+        <Pagination total={50} />
+      </div>
     </>
   );
 };

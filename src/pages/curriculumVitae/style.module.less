@@ -1,8 +1,15 @@
 .cv {
   width: 100%;
   height: 100vh;
+  overflow-y: auto;
   padding-top: 100px;
+  padding-bottom: 100px;
   background: url("~@assets/images/cv.jpeg");
+  .color {
+    color: @primary-color;
+    font-size: 16px;
+    font-weight: bold;
+  }
   .box {
     width: 1280px;
     padding: 40px;
@@ -17,7 +24,7 @@
     .my {
       text-align: left;
       padding: 0 75px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
     .progress {
       .progressList {

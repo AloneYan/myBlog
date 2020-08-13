@@ -41,7 +41,7 @@ export default (props: any) => {
         <div className={style.contentOther}>
           <span>
             <IconFont type="icon-riqi" />
-            {moment(markContent.createTime).format("YYYY-MM-DD hh:mm:ss")}
+            {moment(markContent.createTime).format("YYYY-MM-DD")}
           </span>
           <span>
             <IconFont type="icon-yuedu" />
@@ -49,7 +49,6 @@ export default (props: any) => {
           </span>
         </div>
       </div>
-      <div className={style.contentName}>123</div>
       <div
         className={style.contentCont}
         dangerouslySetInnerHTML={{ __html: markContent.content }}
