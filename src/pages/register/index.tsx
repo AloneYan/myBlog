@@ -64,6 +64,12 @@ const Register = (props: any) => {
           >
             <Input.Password />
           </Form.Item>
+          <Form.Item
+            label="你の网站"
+            name="extension"
+          >
+            <Input />
+          </Form.Item>
           <Button type="primary" htmlType="submit">
             注册and登录
           </Button>

@@ -20,6 +20,10 @@ interface GeneratedApis<T> {
    * 注册接口
    */
   register: GenericAPI<T, any, User对象>;
+  /**
+   * token是否过期
+   */
+  tokenCheck: GenericAPI<T, any, undefined>;
 }
 
 export interface BlogAPI<T>  {

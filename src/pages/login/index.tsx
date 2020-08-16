@@ -9,6 +9,7 @@ import history from "@util/history";
 
 const Login = (props: any) => {
   const onFinish = async (values: any) => {
+    console.log(values)
     const res: any = await api.login.Login.req(values);
     if (res.status === 200) {
       //保存token和用户信息到浏览器缓存中

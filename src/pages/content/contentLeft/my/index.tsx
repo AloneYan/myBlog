@@ -20,7 +20,7 @@ export default () => {
         <div className={style.myHeader}>
           <span onClick={goLogin}>
             <img
-              src="https://dshvv.oss-cn-beijing.aliyuncs.com/yh/1.jpg"
+              src="https://dshvv.oss-cn-beijing.aliyuncs.com/yh/header.jpg"
               alt="头像"
             />
             <span className={style.myName}>@兔纸</span>

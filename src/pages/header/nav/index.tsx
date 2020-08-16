@@ -5,6 +5,8 @@ import { Link, withRouter } from "react-router-dom";
 import { menus } from "./model";
 import style from "./style.module.less";
 import IconFont from "@components/myIconfont";
+import history from "@util/history";
+import api from "@api/api-ins";
 
 const Nav = (props: any) => {
   const [current, setCurrent] = useState<string>("mark");
@@ -39,11 +41,22 @@ const Nav = (props: any) => {
     }
   };
 
+  //跳转后台
+  const goAdmin = async () => {
+    const res: any = await api.tokenCheck.req()
+    if (res.status === 601) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+    } else {
+      history.push("/admin");
+    }
+  }
+
   return (
     <div className={style.nav}>
       {user && (
         <Tooltip title="进入后台～">
-          <a className={style.navGoAdmin} href="/admin">
+          <a className={style.navGoAdmin} onClick={goAdmin}>
             <IconFont type="icon-tuzi" />
           </a>
         </Tooltip>

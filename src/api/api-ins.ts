@@ -13,9 +13,13 @@ axios.interceptors.request.use(
       // 判断是否存在token，如果存在的话，则每个http header都加上token
       config.headers.token = token; //请求头加上token
     }
-    if (!Boolean(config.headers.json)) {
-      config.data = qs.stringify(config.data);
-    }
+    // if (!Boolean(config.headers.json)) {
+    //   console.log(config)
+
+    // }
+    // console.log(decodeURIComponent(config.data))
+    // console.log(qs.stringify(decodeURIComponent(config.data)))
+    // config.data = qs.stringify(config.data);
     return config;
   },
   (err) => {
@@ -37,7 +41,7 @@ axios.interceptors.response.use(
         onOk() {
           history.push("/login");
         },
-        onCancel() {},
+        onCancel() { },
       });
     } else {
       message.error(response.data.message);
@@ -53,7 +57,8 @@ axios.interceptors.response.use(
 // ajax请求的基本配置
 const config = {
   pathSuffix: "",
-  basePath: "https://api.han96.com",
+  //basePath: "https://api.han96.com",
+  basePath: "http://192.168.0.102:7777",
   httpStatusErrorHandler: () => {
     return true;
   },

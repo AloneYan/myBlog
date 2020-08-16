@@ -117,5 +117,9 @@ export default {
     url: '/register',
     method: 'POST',
     isFormData: false
+  },
+  tokenCheck: {
+    url: '/token_check',
+    method: 'GET'
   }
 } as GeneratedApis<ApiDef>;

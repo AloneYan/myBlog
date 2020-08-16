@@ -1,7 +1,7 @@
 module.exports = {
   templates: {},
   configs: [{
-    url: 'https://api.han96.com/v2/api-docs', // 后端swagger地址
+    url: 'http://192.168.0.102:7777/v2/api-docs', // 后端swagger地址
     typeParameterReflects: [{
       name: 'KeyValue',
       typeProperties: ['key', 'value']
