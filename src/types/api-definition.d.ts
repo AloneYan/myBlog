@@ -10,6 +10,10 @@ interface GeneratedApis<T> {
    * 后端服务起始页
    */
   Home: GenericAPI<T, ModelAndView, undefined>;
+  /**
+   * 查询机主信息
+   */
+  baseInfo: GenericAPI<T, any, undefined>;
   blog: BlogAPI<T>;
   book: BookAPI<T>;
   dicts: DictsAPI<T>;
@@ -78,7 +82,16 @@ export interface BlogAPI<T>  {
   /**
    * 博客列表接口
    */
-  list: GenericAPI<T, any, undefined>;
+  list: GenericAPI<T, any, {
+    /**
+     * current
+     */
+    current?: string,
+    /**
+     * size
+     */
+    size?: string
+  }>;
 }
 
 export interface BookAPI<T>  {

@@ -80,10 +80,12 @@ export interface ModelAndView {
 
 export interface undefined {
   email?: string;
+  extension?: string;
   headImg?: string;
   id?: number;
   name?: string;
   pass?: string;
+  role?: string;
 }
 
 

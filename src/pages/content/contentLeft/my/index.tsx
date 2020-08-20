@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+
+import { setBlogGroupBy } from "../../../../redux";
 import style from "./style.module.less";
 import history from "@util/history";
 import IconFont from "@components/myIconfont";
+import api from "@api/api-ins";
 
-export default () => {
+const My = (props: any) => {
+  const [userInfo, setUserInfo] = useState<any>('')
+  useEffect(() => {
+    getInfo()
+  }, [])
+  //获取站长信息
+  const getInfo = async () => {
+    const res: any = await api.baseInfo.req()
+    if (res.status === 200) {
+      setUserInfo(res.data)
+      props.setBlogGroupBy(res.data.blogGroupBy);
+    }
+  }
   //跳转登录
   const goLogin = () => {
     history.push("/login");
@@ -20,23 +36,23 @@ export default () => {
         <div className={style.myHeader}>
           <span onClick={goLogin}>
             <img
-              src="https://dshvv.oss-cn-beijing.aliyuncs.com/yh/header.jpg"
+              src={userInfo.hdimg}
               alt="头像"
             />
-            <span className={style.myName}>@兔纸</span>
+            <span className={style.myName}>@{userInfo.uname}</span>
           </span>
         </div>
         <div className={style.myText}>
           <a href="/mark">
-            <p className={style.myTextNum}>10</p>
+            <p className={style.myTextNum}>{userInfo.blogsCount}</p>
             <p className={style.myTextTitle}>文档</p>
           </a>
           <a href="/book">
-            <p className={style.myTextNum}>4</p>
+            <p className={style.myTextNum}>{userInfo.booksCount}</p>
             <p className={style.myTextTitle}>书单</p>
           </a>
           <a href="/">
-            <p className={style.myTextNum}>123920</p>
+            <p className={style.myTextNum}>{userInfo.views}</p>
             <p className={style.myTextTitle}>浏览</p>
           </a>
         </div>
@@ -67,3 +83,9 @@ export default () => {
     </div>
   );
 };
+//存放blogGroupBy数据
+export default connect(null, (dispatch: any) => ({
+  setBlogGroupBy(blogGroupBy: any) {
+    dispatch(setBlogGroupBy({ blogGroupBy }));
+  },
+}))(My);

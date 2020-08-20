@@ -5,6 +5,10 @@ export default {
     url: '/',
     method: 'GET'
   },
+  baseInfo: {
+    url: '/baseInfo',
+    method: 'GET'
+  },
   blog: {
     getOne: {
       url: '/blog',
@@ -119,7 +123,7 @@ export default {
     isFormData: false
   },
   tokenCheck: {
-    url: '/token_check',
+    url: '/tokenCheck',
     method: 'GET'
   }
 } as GeneratedApis<ApiDef>;
