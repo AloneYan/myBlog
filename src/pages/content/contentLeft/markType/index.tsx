@@ -1,36 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
 
+import api from "@api/api-ins";
 import IconFont from "@components/myIconfont";
 import style from "./style.module.less";
 
-const data = [
-  {
-    name: "Vue",
-    num: 0,
-  },
-  {
-    name: "TypeScript",
-    num: 12,
-  },
-  {
-    name: "小程序",
-    num: 2,
-  },
-  {
-    name: "JavaScript",
-    num: 10,
-  },
-];
-
-const MarkType = (props: any) => {
-  const [list, setList] = useState<any>([])
+export default () => {
+  const [list, setList] = useState([])
   useEffect(() => {
-    setList(props.blogGroupBy)
-    setTimeout(() => {
-      console.log(props)
-    }, 5000)
+    getMarkType()
   }, [])
+
+  //获取列表
+  const getMarkType = async () => {
+    const res: any = await api.blogType.req()
+    if (res.status === 200) {
+      setList(res.data.blogGroupBy)
+    }
+  }
 
   return (
     <div className="card">
@@ -42,12 +28,12 @@ const MarkType = (props: any) => {
       </div>
       <div className={style.typeList}>
         {list.map((item: any) => (
-          <div key={item.name}>
+          <div key={item.dicName}>
             <span className={style.myIconfont}>
               <IconFont type="icon-wenjianjia" />
             </span>
-            {item.name}
-            <span>（{item.num}）</span>
+            {item.dicName}
+            <span>（{item.total}）</span>
           </div>
         ))}
       </div>
@@ -55,9 +41,3 @@ const MarkType = (props: any) => {
   );
 };
 
-export default connect(
-  (state: any) => ({
-    blogGroupBy: state.common.blogGroupBy,
-  }),
-  null
-)(MarkType);

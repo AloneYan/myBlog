@@ -40,6 +40,10 @@ export default {
       method: 'GET'
     }
   },
+  blogType: {
+    url: '/blogType',
+    method: 'GET'
+  },
   book: {
     getOne: {
       url: '/book',
@@ -70,6 +74,10 @@ export default {
       url: '/book/list',
       method: 'GET'
     }
+  },
+  bookType: {
+    url: '/bookType',
+    method: 'GET'
   },
   dicts: {
     save: {

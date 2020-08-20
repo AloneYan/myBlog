@@ -15,7 +15,15 @@ interface GeneratedApis<T> {
    */
   baseInfo: GenericAPI<T, any, undefined>;
   blog: BlogAPI<T>;
+  /**
+   * 查询文档分类信息
+   */
+  blogType: GenericAPI<T, any, undefined>;
   book: BookAPI<T>;
+  /**
+   * 查询书单分类信息
+   */
+  bookType: GenericAPI<T, any, undefined>;
   dicts: DictsAPI<T>;
   login: LoginAPI<T>;
   mood: MoodAPI<T>;

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
 
-import { setBlogGroupBy } from "../../../../redux";
 import style from "./style.module.less";
 import history from "@util/history";
 import IconFont from "@components/myIconfont";
 import api from "@api/api-ins";
 
-const My = (props: any) => {
+export default () => {
   const [userInfo, setUserInfo] = useState<any>('')
   useEffect(() => {
     getInfo()
@@ -17,7 +15,6 @@ const My = (props: any) => {
     const res: any = await api.baseInfo.req()
     if (res.status === 200) {
       setUserInfo(res.data)
-      props.setBlogGroupBy(res.data.blogGroupBy);
     }
   }
   //跳转登录
@@ -43,18 +40,18 @@ const My = (props: any) => {
           </span>
         </div>
         <div className={style.myText}>
-          <a href="/mark">
+          <span >
             <p className={style.myTextNum}>{userInfo.blogsCount}</p>
             <p className={style.myTextTitle}>文档</p>
-          </a>
-          <a href="/book">
+          </span>
+          <span>
             <p className={style.myTextNum}>{userInfo.booksCount}</p>
             <p className={style.myTextTitle}>书单</p>
-          </a>
-          <a href="/">
+          </span>
+          <span>
             <p className={style.myTextNum}>{userInfo.views}</p>
             <p className={style.myTextTitle}>浏览</p>
-          </a>
+          </span>
         </div>
         <div className={style.link}>
           <ul>
@@ -83,9 +80,3 @@ const My = (props: any) => {
     </div>
   );
 };
-//存放blogGroupBy数据
-export default connect(null, (dispatch: any) => ({
-  setBlogGroupBy(blogGroupBy: any) {
-    dispatch(setBlogGroupBy({ blogGroupBy }));
-  },
-}))(My);
