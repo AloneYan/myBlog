@@ -1,5 +1,6 @@
 .banner {
-  height: 300px;
+  height: 100vh;
+  width: 100%;
   position: relative;
   .bannerPosition {
     position: absolute;
@@ -8,33 +9,61 @@
     bottom: 0;
     right: 0;
     width: 100%;
-    z-index: 100;
-    background-color: rgba(225, 225, 225, 0.3);
+    height: 100%;
+    z-index: 10;
+    background-color: rgba(45, 45, 117, 0.3);
+    background: url("~@assets/images/bg/grid.png");
   }
   .bannerImg {
-    height: 600px;
-    background-image: url("~@assets/images/banners.jpeg");
+    height: 100%;
+    width: 100%;
+    background-image: url("~@assets/images/bg/banners.jpeg");
     background-size: cover;
     background-position: center;
   }
-  .bannerText {
-    width: 1280px;
-    margin: 0 auto;
-    padding: 10px 0;
-    text-align: left;
-    color: @primary-color;
-    align-items: center;
-    img {
-      width: 20px;
-      height: 20px;
-      margin-left: 10px;
-      border-radius: 50%;
+
+  .wave1 {
+    width: auto;
+    height: 80px;
+    background: url("~@assets/images/bg/wen.png") repeat-x;
+    position: absolute;
+    bottom: 0;
+    width: 400%;
+    left: -80px;
+    z-index: 20;
+    opacity: 1;
+    transition-duration: 0.4s, 0.4s;
+    animation-name: move1;
+    animation-duration: 240s;
+    animation-fill-mode: backwards;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  .wave2 {
+    width: auto;
+    height: 65px;
+    background: url("~@assets/images/bg/wen1.png") repeat-x;
+    position: absolute;
+    bottom: 0;
+    width: 400%;
+    left: 0;
+    z-index: 15;
+    opacity: 1;
+    transition-duration: 0.4s, 0.4s;
+    animation-name: move2;
+    animation-duration: 160s;
+    animation-fill-mode: backwards;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  @keyframes move1 {
+    100% {
+      background-position: 100% 0;
     }
-    b {
-      padding-left: 20px;
-    }
-    span {
-      font-size: 14px;
+  }
+  @keyframes move2 {
+    100% {
+      background-position: -100% 0;
     }
   }
 }

@@ -1,20 +1,36 @@
 .nav {
   width: 100%;
-  border-top: 3px solid #ffffff;
-  border-bottom: 3px solid #ffffff;
-  background: rgba(225, 225, 225, 0.6);
-  position: relative;
-  z-index: 100;
-  .navGoAdmin {
-    position: absolute;
-    top: -65px;
-    right: 6%;
-    font-size: 70px;
-    line-height: 0;
-  }
+  height: 80px;
+  line-height: 80px;
+  background: #fff;
+  opacity: 0.7;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
   .navCont {
     width: 1280px;
     margin: 0 auto;
+    position: relative;
+    .navRight {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 30;
+      .navGoAdmin {
+        font-size: 70px;
+        display: inline-block;
+      }
+      .navContText {
+        display: inline-block;
+        font-size: 16px;
+        span {
+          margin: 0 10px;
+          color: @primary-color;
+        }
+      }
+    }
+
     .navLeft {
       :global {
         .ant-menu-horizontal {
@@ -27,12 +43,16 @@
             border: none;
             padding: 0;
             width: 160px;
-            font-weight: bold;
+            font-weight: 400;
+            a {
+              line-height: 80px;
+              font-size: 18px;
+            }
           }
           .ant-menu-item-selected,
           .ant-menu-item-active {
             a {
-              font-size: 16px;
+              font-size: 20px;
             }
           }
         }

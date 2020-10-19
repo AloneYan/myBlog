@@ -50,8 +50,8 @@ axios.interceptors.response.use(
 // ajax请求的基本配置
 const config = {
   pathSuffix: "",
-  // basePath: "https://api.han96.com",
-  basePath: "http://localhost:7777",
+  basePath: "https://api.han96.com",
+  //basePath: "http://localhost:7777",
   httpStatusErrorHandler: () => {
     return true;
   },

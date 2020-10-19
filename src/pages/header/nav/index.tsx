@@ -41,6 +41,12 @@ const Nav = (props: any) => {
     }
   };
 
+  //退出登录
+  const logout = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
+
   //跳转后台
   const goAdmin = async () => {
     const res: any = await api.tokenCheck.req()
@@ -54,15 +60,21 @@ const Nav = (props: any) => {
 
   return (
     <div className={style.nav}>
-      {user && (
-        <Tooltip title="进入后台～">
-          <a className={style.navGoAdmin} onClick={goAdmin}>
-            <IconFont type="icon-tuzi" />
-          </a>
-        </Tooltip>
-      )}
-
       <Row className={style.navCont}>
+        {/* 后台入口 */}
+        {user && (
+          <div className={style.navRight}>
+            <a className={style.navGoAdmin} onClick={goAdmin}>
+              <IconFont type="icon-tuzi" />
+            </a>
+            <div className={style.navContText}>
+              <b>{user.name} 你来啦～</b>
+              <span onClick={logout}>
+                <IconFont type="icon-tuichu1" />退出
+              </span>
+            </div>
+          </div>
+        )}
         {/* 分类导航 */}
         <Col span={24} className={style.navLeft}>
           <Menu selectedKeys={[current]} mode="horizontal">

@@ -31,7 +31,7 @@ export const progressColor = [
       "本兔的博客就是由react搭建，所以最熟悉react。vue工作中用过，写过两个项目。angular只会一点ng1，单独搭建完全不行。",
   },
   {
-    type: "小程序/H5",
+    type: "小程序/mpvue/H5",
     colorStar: "#F9FEA5",
     colorEnd: "#20E2D7",
     percent: 90,

@@ -1,40 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Tooltip } from "antd";
 
-import Iconfont from "@components/myIconfont";
 import style from "./style.module.less";
 
 export default () => {
-  const [user, setUser] = useState<User>();
   useEffect(() => {
-    getUser();
+
   }, []);
-  //获取用户信息
-  const getUser = () => {
-    if (localStorage.user) {
-      const user = JSON.parse(localStorage.user);
-      setUser(user);
-    }
-  };
-  //退出登录
-  const logout = () => {
-    localStorage.clear();
-    window.location.reload();
-  };
   return (
     <div className={style.banner}>
-      <div className={style.bannerPosition}>
-        {user && (
-          <div className={style.bannerText}>
-            <Tooltip placement="bottom" title="退出">
-              <span onClick={logout}>
-                <Iconfont type="icon-tuichu1" />
-              </span>
-            </Tooltip>
-            <b>hi！@{user.name} ,好久不见～</b>
-          </div>
-        )}
+      {/* 蒙层 */}
+      <div className={style.bannerPosition}></div>
+      {/* 波浪特效 */}
+      <div>
+        <i className={style.wave1}></i>
+        <i className={style.wave2}></i>
       </div>
+      {/* 背景图 */}
       <div className={style.bannerImg}></div>
     </div>
   );
