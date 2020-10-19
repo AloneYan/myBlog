@@ -11,6 +11,7 @@ import api from "@api/api-ins";
 const Nav = (props: any) => {
   const [current, setCurrent] = useState<string>("mark");
   const [user, setUser] = useState<User>();
+  const [opacity, setOpacity] = useState<number>(0.7)
   const {
     location: { pathname },
   } = props;
@@ -18,6 +19,10 @@ const Nav = (props: any) => {
   useEffect(() => {
     getUser();
     setNavHlight(pathname);
+    window.onscroll = () => {
+      let opacitys = document.documentElement.scrollTop < (document.body.offsetHeight - 80) ? 0.7 : 1
+      setOpacity(opacitys)
+    }
   }, [pathname]);
 
   // 导航高亮匹配
@@ -59,7 +64,7 @@ const Nav = (props: any) => {
   }
 
   return (
-    <div className={style.nav}>
+    <div className={style.nav} style={{ opacity: opacity }}>
       <Row className={style.navCont}>
         {/* 后台入口 */}
         {user && (

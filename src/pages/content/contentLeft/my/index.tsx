@@ -69,11 +69,6 @@ export default () => {
                 <IconFont type="icon-github" />
               </a>
             </li>
-            <li>
-              <a target="blank" href="https://blog.csdn.net/YanH_an">
-                <IconFont type="icon-csdn" />
-              </a>
-            </li>
           </ul>
         </div>
       </div>
