@@ -6,7 +6,7 @@ export default {
     method: 'GET'
   },
   baseInfo: {
-    url: '/baseInfo',
+    url: '/base_info',
     method: 'GET'
   },
   blog: {
@@ -41,7 +41,7 @@ export default {
     }
   },
   blogType: {
-    url: '/blogType',
+    url: '/blog_type',
     method: 'GET'
   },
   book: {
@@ -76,7 +76,7 @@ export default {
     }
   },
   bookType: {
-    url: '/bookType',
+    url: '/book_type',
     method: 'GET'
   },
   dicts: {
@@ -131,7 +131,7 @@ export default {
     isFormData: false
   },
   tokenCheck: {
-    url: '/tokenCheck',
+    url: '/token_check',
     method: 'GET'
   }
 } as GeneratedApis<ApiDef>;

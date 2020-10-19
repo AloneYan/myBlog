@@ -23,7 +23,7 @@ export default () => {
   return (
     <div className={style.index}>
       <Row>
-        <Col span={12}>
+        <Col span={24}>
           <div className={style.indexEvery}>
             <h3>说点什么？</h3>
             <BaftEditor change={baftEditorChange} />

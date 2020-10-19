@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Breadcrumb } from "antd";
+import { Breadcrumb, Skeleton } from "antd";
 import { HomeOutlined } from "@ant-design/icons";
 import moment from "moment";
 import marked from "marked";
@@ -55,7 +55,9 @@ export default (props: any) => {
         </Breadcrumb>
       </div>
       <div className={style.contentHeader}>
-        {markContent.title}
+        {markContent.title?
+        <>
+        markContent.title
         <span>@兔纸</span>
         <div className={style.contentOther}>
           <span>
@@ -66,7 +68,10 @@ export default (props: any) => {
             <IconFont type="icon-yuedu" />
             {markContent.readNum}次阅读
           </span>
-        </div>
+        </div></>
+        :<Skeleton active />}
+        
+        
       </div>
       <div
         className={style.contentCont}

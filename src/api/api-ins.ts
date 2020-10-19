@@ -51,7 +51,7 @@ axios.interceptors.response.use(
 const config = {
   pathSuffix: "",
   basePath: "https://api.han96.com",
-  //basePath: "http://localhost:7777",
+  // basePath: "http://localhost:7777",
   httpStatusErrorHandler: () => {
     return true;
   },
