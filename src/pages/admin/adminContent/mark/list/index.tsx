@@ -48,8 +48,8 @@ export default () => {
   };
   //确定删除文档
   const handleOk = async () => {
-    const res = await api.blog.remove.req({ id: markId });
-    if (res.data.status === 200) {
+    const res: any = await api.blog.remove.req({ id: markId });
+    if (res.status === 200) {
       setVisible(false);
       message.success("删除成功");
       getList();

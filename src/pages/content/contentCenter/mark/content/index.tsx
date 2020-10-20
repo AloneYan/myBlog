@@ -26,7 +26,7 @@ export default (props: any) => {
     setMarkDown(marked(res.data.content));
   };
   //提交评论
-  const onSubmit = async (msg: string, callBack: Function) => {};
+  const onSubmit = async (msg: string, callBack: Function) => { };
 
   marked.setOptions({
     highlight: function (code) {
@@ -55,23 +55,23 @@ export default (props: any) => {
         </Breadcrumb>
       </div>
       <div className={style.contentHeader}>
-        {markContent.title?
-        <>
-        markContent.title
-        <span>@兔纸</span>
-        <div className={style.contentOther}>
-          <span>
-            <IconFont type="icon-riqi" />
-            {moment(markContent.createTime).format("YYYY-MM-DD hh:mm:ss")}
+        {markContent.title ?
+          <>
+            {markContent.title}
+            <span>@兔纸</span>
+            <div className={style.contentOther}>
+              <span>
+                <IconFont type="icon-riqi" />
+                {moment(markContent.createTime).format("YYYY-MM-DD hh:mm:ss")}
+              </span>
+              <span>
+                <IconFont type="icon-yuedu" />
+                {markContent.readNum}次阅读
           </span>
-          <span>
-            <IconFont type="icon-yuedu" />
-            {markContent.readNum}次阅读
-          </span>
-        </div></>
-        :<Skeleton active />}
-        
-        
+            </div></>
+          : <Skeleton active />}
+
+
       </div>
       <div
         className={style.contentCont}
