@@ -1,7 +1,7 @@
 module.exports = {
   templates: {},
   configs: [{
-    url: 'http://localhost:7777//v2/api-docs', // 后端swagger地址
+    url: 'http://127.0.0.1:7777/v2/api-docs', // 后端swagger地址
     typeParameterReflects: [{
       name: 'KeyValue',
       typeProperties: ['key', 'value']

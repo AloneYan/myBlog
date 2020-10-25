@@ -9,7 +9,7 @@ import history from "@util/history";
 import api from "@api/api-ins";
 
 export default () => {
-  const [markList, setList] = useState([]);
+  const [markList, setList] = useState<any>([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     getMarkList();
@@ -21,8 +21,12 @@ export default () => {
     });
   };
   //获取文档列表
-  const getMarkList = async () => {
-    const res: any = await api.blog.list.req();
+  const getMarkList = async (e:any=1) => {
+    const params: any = {
+      current:e,
+      size:10
+    }
+    const res: any = await api.blog.list.req(params);
     if (res.status === 200) {
       setList(res.data);
       setLoading(false);
@@ -31,7 +35,7 @@ export default () => {
   return (
     <>
       <List
-        dataSource={markList}
+        dataSource={markList.records}
         loading={loading}
         renderItem={(item: any) => (
           <div
@@ -61,7 +65,7 @@ export default () => {
         )}
       ></List>
       <div className={style.pagination}>
-        <Pagination total={50} defaultCurrent={5} />
+        <Pagination total={markList.total} current={1} pageSize={10} onChange={getMarkList}/>
       </div>
     </>
   );
